@@ -1,7 +1,7 @@
-# ============================================
+# =========================================================
 # 🌸 MATERIAL MATCH AI 🌸
-# Pinky Matcha Latte Edition 🐰🎀
-# ============================================
+# Pinky Matcha Latte Ultimate Edition 🐰🎀
+# =========================================================
 
 import streamlit as st
 import pandas as pd
@@ -12,9 +12,9 @@ import plotly.graph_objects as go
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import euclidean_distances
 
-# ============================================
-# CONFIGURACIÓN GENERAL
-# ============================================
+# =========================================================
+# CONFIG
+# =========================================================
 
 st.set_page_config(
     page_title="Material Match AI 🌸",
@@ -22,54 +22,55 @@ st.set_page_config(
     layout="wide"
 )
 
-# ============================================
-# CSS GIRLIE 🌸
-# ============================================
+# =========================================================
+# CSS GIRLIE ULTRA CUTE 🌸
+# =========================================================
 
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
 
 html, body, [class*="css"] {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Fredoka', sans-serif;
 }
 
 /* Fondo */
 .stApp {
-    background: linear-gradient(
+    background:
+    linear-gradient(
         135deg,
         #ffe4ec 0%,
-        #fff0f5 50%,
+        #fff0f6 30%,
         #e8fff1 100%
     );
 }
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background: #fff5f8;
-    border-right: 3px solid #ffc2d1;
+    background: #fff5fa;
+    border-right: 4px solid #ffc2d1;
 }
 
 /* Título */
 h1 {
     text-align: center;
-    color: #ff5fa2 !important;
-    font-size: 60px !important;
+    color: #ff4f9a !important;
+    font-size: 65px !important;
 }
 
 /* Subtítulos */
 h2, h3 {
-    color: #ff85b3 !important;
+    color: #ff75af !important;
 }
 
 /* Cards */
 [data-testid="metric-container"] {
-    background: rgba(255,255,255,0.75);
-    border: 2px solid #ffc2d1;
-    border-radius: 20px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 25px;
+    border: 3px solid #ffc2d1;
     padding: 15px;
-    box-shadow: 0px 5px 15px rgba(255,182,193,0.4);
+    box-shadow: 0px 6px 15px rgba(255,182,193,0.3);
 }
 
 /* Botones */
@@ -81,34 +82,40 @@ h2, h3 {
     );
 
     color: white;
+    border-radius: 18px;
     border: none;
-    border-radius: 15px;
-    height: 3em;
+    height: 3.2em;
     font-size: 18px;
     font-weight: bold;
 }
 
-/* Caja cute */
+/* Input */
+.stTextInput>div>div>input {
+    border-radius: 15px;
+    border: 2px solid #ffb3c6;
+}
+
+/* Cute box */
 .cute-box {
-    background: rgba(255,255,255,0.7);
-    border: 2px dashed #ffb3c6;
-    border-radius: 20px;
-    padding: 20px;
+    background: rgba(255,255,255,0.75);
+    border: 3px dashed #ffb3c6;
+    border-radius: 25px;
+    padding: 25px;
     margin-bottom: 20px;
 }
 
-/* Dataframe */
-.stDataFrame {
-    border-radius: 20px;
-    overflow: hidden;
+/* Tabs */
+.stTabs [data-baseweb="tab"] {
+    font-size: 18px;
+    color: #ff75af;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ============================================
+# =========================================================
 # TÍTULO
-# ============================================
+# =========================================================
 
 st.title("🌸 Material Match AI 🌸")
 
@@ -117,49 +124,34 @@ st.markdown("""
 
 ### 🐰 Bienvenida al laboratorio más cute de materiales 🎀
 
-Selecciona las propiedades mecánicas deseadas y el sistema
-encontrará los materiales más compatibles ✨
+✨ Busca materiales según propiedades mecánicas  
+✨ Descubre aplicaciones reales  
+✨ Explora materiales de ingeniería de forma divertida 💖
 
-💖 Matcha vibes + ingeniería de materiales 💖
+🌸 Matcha vibes + materiales + IA 🌸
 
 </div>
 """, unsafe_allow_html=True)
 
-# ============================================
+# =========================================================
 # CARGAR EXCEL
-# ============================================
+# =========================================================
 
-try:
+df = pd.read_excel("Data_convertido.xlsx")
 
-    df = pd.read_excel("materiales_sin_aceros.xlsx")
-
-except Exception as e:
-
-    st.error(f"❌ Error al cargar el Excel: {e}")
-    st.stop()
-
-# ============================================
+# =========================================================
 # LIMPIAR COLUMNAS
-# ============================================
+# =========================================================
 
 df.columns = (
     df.columns
     .astype(str)
     .str.strip()
-    .str.replace("\n", " ")
-    .str.replace("  ", " ")
 )
 
-# ============================================
-# MOSTRAR COLUMNAS
-# ============================================
-
-st.write("🌸 Columnas detectadas:")
-st.write(df.columns.tolist())
-
-# ============================================
+# =========================================================
 # COLUMNAS NUMÉRICAS
-# ============================================
+# =========================================================
 
 columnas_numericas = [
     "Su",
@@ -170,21 +162,6 @@ columnas_numericas = [
     "G"
 ]
 
-# ============================================
-# VALIDAR COLUMNAS
-# ============================================
-
-for col in columnas_numericas:
-
-    if col not in df.columns:
-
-        st.error(f"❌ No se encontró la columna: {col}")
-        st.stop()
-
-# ============================================
-# CONVERTIR A NUMÉRICO
-# ============================================
-
 for col in columnas_numericas:
 
     df[col] = pd.to_numeric(
@@ -192,366 +169,446 @@ for col in columnas_numericas:
         errors="coerce"
     )
 
-# ============================================
-# ELIMINAR NaN
-# ============================================
-
 df = df.dropna(subset=columnas_numericas)
 
-# ============================================
-# SIDEBAR
-# ============================================
+# =========================================================
+# TABS
+# =========================================================
 
-st.sidebar.title("🎀 Propiedades deseadas")
+tab1, tab2 = st.tabs([
+    "🎀 Recomendador IA",
+    "🔍 Buscar material"
+])
 
-# ============================================
-# SLIDERS
-# ============================================
+# =========================================================
+# TAB 1
+# =========================================================
 
-uts = st.sidebar.slider(
-    "💪 Resistencia máxima (Su)",
-    int(df["Su"].min()),
-    int(df["Su"].max()),
-    int(df["Su"].mean())
-)
+with tab1:
 
-ys = st.sidebar.slider(
-    "⚙️ Límite elástico (Sy)",
-    int(df["Sy"].min()),
-    int(df["Sy"].max()),
-    int(df["Sy"].mean())
-)
+    st.header("💖 Encuentra materiales compatibles")
 
-elong = st.sidebar.slider(
-    "🌸 Elongación (A5)",
-    int(df["A5"].min()),
-    int(df["A5"].max()),
-    int(df["A5"].mean())
-)
+    # =====================================================
+    # SIDEBAR
+    # =====================================================
 
-hb = st.sidebar.slider(
-    "🧁 Dureza Brinell (Bhn)",
-    int(df["Bhn"].min()),
-    int(df["Bhn"].max()),
-    int(df["Bhn"].mean())
-)
+    st.sidebar.title("🎀 Propiedades deseadas")
 
-young = st.sidebar.slider(
-    "📏 Módulo de Young (E)",
-    int(df["E"].min()),
-    int(df["E"].max()),
-    int(df["E"].mean())
-)
-
-corte = st.sidebar.slider(
-    "🐹 Módulo de corte (G)",
-    int(df["G"].min()),
-    int(df["G"].max()),
-    int(df["G"].mean())
-)
-
-# ============================================
-# TRATAMIENTO
-# ============================================
-
-if "Heat treatment" in df.columns:
-
-    tratamientos = sorted(
-        df["Heat treatment"]
-        .dropna()
-        .astype(str)
-        .unique()
+    uts = st.sidebar.slider(
+        "💪 Resistencia máxima",
+        int(df["Su"].min()),
+        int(df["Su"].max()),
+        int(df["Su"].mean())
     )
 
-else:
+    ys = st.sidebar.slider(
+        "⚙️ Límite elástico",
+        int(df["Sy"].min()),
+        int(df["Sy"].max()),
+        int(df["Sy"].mean())
+    )
 
-    tratamientos = ["Todos"]
+    elong = st.sidebar.slider(
+        "🌸 Elongación",
+        int(df["A5"].min()),
+        int(df["A5"].max()),
+        int(df["A5"].mean())
+    )
 
-tratamiento = st.sidebar.selectbox(
-    "🔥 Tratamiento térmico",
-    ["Todos"] + tratamientos
-)
+    hb = st.sidebar.slider(
+        "🧁 Dureza Brinell",
+        int(df["Bhn"].min()),
+        int(df["Bhn"].max()),
+        int(df["Bhn"].mean())
+    )
 
-# ============================================
-# BOTÓN
-# ============================================
+    young = st.sidebar.slider(
+        "📏 Módulo de Young",
+        int(df["E"].min()),
+        int(df["E"].max()),
+        int(df["E"].mean())
+    )
 
-buscar = st.sidebar.button(
-    "✨ Buscar material ✨"
-)
+    corte = st.sidebar.slider(
+        "🐹 Módulo de corte",
+        int(df["G"].min()),
+        int(df["G"].max()),
+        int(df["G"].mean())
+    )
 
-# ============================================
-# RECOMENDADOR
-# ============================================
+    tratamiento = st.sidebar.selectbox(
+        "🔥 Tratamiento térmico",
+        ["Todos"] + sorted(
+            df["Heat treatment"]
+            .dropna()
+            .astype(str)
+            .unique()
+        )
+    )
 
-if buscar:
+    buscar = st.sidebar.button(
+        "✨ Buscar materiales ✨"
+    )
 
-    datos = df.copy()
+    # =====================================================
+    # RECOMENDADOR
+    # =====================================================
 
-    if (
-        tratamiento != "Todos"
-        and "Heat treatment" in datos.columns
-    ):
+    if buscar:
 
-        datos = datos[
-            datos["Heat treatment"] == tratamiento
+        datos = df.copy()
+
+        if tratamiento != "Todos":
+
+            datos = datos[
+                datos["Heat treatment"] == tratamiento
+            ]
+
+        features = [
+            "Su",
+            "Sy",
+            "A5",
+            "Bhn",
+            "E",
+            "G"
         ]
 
-    # ============================================
-    # FEATURES
-    # ============================================
+        scaler = MinMaxScaler()
 
-    features = [
-        "Su",
-        "Sy",
-        "A5",
-        "Bhn",
-        "E",
-        "G"
-    ]
-
-    # ============================================
-    # NORMALIZAR
-    # ============================================
-
-    scaler = MinMaxScaler()
-
-    X = scaler.fit_transform(
-        datos[features]
-    )
-
-    usuario = scaler.transform([[
-        uts,
-        ys,
-        elong,
-        hb,
-        young,
-        corte
-    ]])
-
-    # ============================================
-    # DISTANCIAS
-    # ============================================
-
-    distancias = euclidean_distances(
-        usuario,
-        X
-    )
-
-    # ============================================
-    # TOP 5
-    # ============================================
-
-    indices = np.argsort(
-        distancias[0]
-    )[:5]
-
-    mejores = datos.iloc[indices].copy()
-
-    mejores["Similitud %"] = [
-        round(100 / (1 + d), 2)
-        for d in distancias[0][indices]
-    ]
-
-    # ============================================
-    # RESULTADOS
-    # ============================================
-
-    st.header("🎀 Materiales recomendados")
-
-    columnas_mostrar = ["Material", "Similitud %"]
-
-    if "Heat treatment" in mejores.columns:
-
-        columnas_mostrar.insert(
-            1,
-            "Heat treatment"
+        X = scaler.fit_transform(
+            datos[features]
         )
 
-    st.dataframe(
-        mejores[columnas_mostrar],
-        use_container_width=True
-    )
-
-    # ============================================
-    # MEJOR MATERIAL
-    # ============================================
-
-    mejor = mejores.iloc[0]
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-
-        st.metric(
-            "🌸 Material",
-            str(mejor["Material"])
-        )
-
-    with col2:
-
-        st.metric(
-            "✨ Similitud",
-            f"{mejor['Similitud %']}%"
-        )
-
-    with col3:
-
-        if "Heat treatment" in mejor.index:
-
-            st.metric(
-                "🔥 Tratamiento",
-                str(mejor["Heat treatment"])
-            )
-
-    # ============================================
-    # APLICACIONES
-    # ============================================
-
-    st.header("🧠 Aplicaciones sugeridas")
-
-    def aplicaciones(su, hb, a5):
-
-        if su > 900:
-
-            return """
-            💖 Excelente para:
-            - Engranes
-            - Ejes mecánicos
-            - Componentes de alto esfuerzo
-            """
-
-        elif a5 > 25:
-
-            return """
-            🌸 Ideal para:
-            - Estructuras soldables
-            - Componentes deformables
-            - Láminas metálicas
-            """
-
-        elif hb > 250:
-
-            return """
-            🐰 Recomendado para:
-            - Herramientas
-            - Piezas resistentes al desgaste
-            """
-
-        else:
-
-            return """
-            🎀 Uso general:
-            - Componentes mecánicos
-            - Soportes
-            - Aplicaciones industriales
-            """
-
-    st.info(
-        aplicaciones(
-            mejor["Su"],
-            mejor["Bhn"],
-            mejor["A5"]
-        )
-    )
-
-    # ============================================
-    # SCATTER PLOT
-    # ============================================
-
-    st.header("📊 Comparación de materiales")
-
-    fig = px.scatter(
-        mejores,
-        x="Bhn",
-        y="Su",
-        color="Material",
-        size="Similitud %",
-        hover_data=["Heat treatment"]
-        if "Heat treatment" in mejores.columns
-        else None,
-        template="plotly_white"
-    )
-
-    fig.update_layout(
-        paper_bgcolor="#fff0f5",
-        plot_bgcolor="#fffafc"
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-
-    # ============================================
-    # RADAR CHART
-    # ============================================
-
-    st.header("🌸 Comparación visual")
-
-    fig2 = go.Figure()
-
-    fig2.add_trace(go.Scatterpolar(
-        r=[
+        usuario = scaler.transform([[
             uts,
             ys,
             elong,
             hb,
             young,
             corte
-        ],
-        theta=[
-            "Su",
-            "Sy",
-            "A5",
-            "Bhn",
-            "E",
-            "G"
-        ],
-        fill='toself',
-        name='Deseado'
-    ))
+        ]])
 
-    fig2.add_trace(go.Scatterpolar(
-        r=[
-            mejor["Su"],
-            mejor["Sy"],
-            mejor["A5"],
-            mejor["Bhn"],
-            mejor["E"],
-            mejor["G"]
-        ],
-        theta=[
-            "Su",
-            "Sy",
-            "A5",
-            "Bhn",
-            "E",
-            "G"
-        ],
-        fill='toself',
-        name='Material'
-    ))
-
-    fig2.update_layout(
-        paper_bgcolor="#fff0f5",
-        polar=dict(
-            bgcolor="#fffafc"
+        distancias = euclidean_distances(
+            usuario,
+            X
         )
+
+        indices = np.argsort(
+            distancias[0]
+        )[:5]
+
+        mejores = datos.iloc[indices].copy()
+
+        mejores["Similitud %"] = [
+            round(100 / (1 + d), 2)
+            for d in distancias[0][indices]
+        ]
+
+        # =================================================
+        # RESULTADOS
+        # =================================================
+
+        st.header("🎀 Materiales recomendados")
+
+        st.dataframe(
+            mejores[
+                [
+                    "Material",
+                    "Heat treatment",
+                    "Similitud %"
+                ]
+            ],
+            use_container_width=True
+        )
+
+        # =================================================
+        # TOP MATERIAL
+        # =================================================
+
+        mejor = mejores.iloc[0]
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+
+            st.metric(
+                "🌸 Material",
+                mejor["Material"]
+            )
+
+        with col2:
+
+            st.metric(
+                "✨ Similitud",
+                f"{mejor['Similitud %']}%"
+            )
+
+        with col3:
+
+            st.metric(
+                "🔥 Tratamiento",
+                mejor["Heat treatment"]
+            )
+
+        # =================================================
+        # SCATTER FUNCIONAL
+        # =================================================
+
+        st.header("📊 Comparación visual")
+
+        fig = px.scatter(
+            mejores,
+            x="Bhn",
+            y="Su",
+            color="Material",
+            size="Similitud %",
+            hover_name="Material",
+            text="Material"
+        )
+
+        fig.update_traces(
+            textposition="top center"
+        )
+
+        fig.update_layout(
+            paper_bgcolor="#fff0f5",
+            plot_bgcolor="#fffafc",
+            font=dict(size=14),
+            height=600
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+        # =================================================
+        # RADAR CHART
+        # =================================================
+
+        st.header("🌸 Radar de propiedades")
+
+        fig2 = go.Figure()
+
+        fig2.add_trace(go.Scatterpolar(
+            r=[
+                uts,
+                ys,
+                elong,
+                hb,
+                young,
+                corte
+            ],
+            theta=[
+                "Su",
+                "Sy",
+                "A5",
+                "Bhn",
+                "E",
+                "G"
+            ],
+            fill='toself',
+            name='Deseado'
+        ))
+
+        fig2.add_trace(go.Scatterpolar(
+            r=[
+                mejor["Su"],
+                mejor["Sy"],
+                mejor["A5"],
+                mejor["Bhn"],
+                mejor["E"],
+                mejor["G"]
+            ],
+            theta=[
+                "Su",
+                "Sy",
+                "A5",
+                "Bhn",
+                "E",
+                "G"
+            ],
+            fill='toself',
+            name='Material'
+        ))
+
+        fig2.update_layout(
+            paper_bgcolor="#fff0f5",
+            polar=dict(
+                bgcolor="#fffafc"
+            ),
+            height=600
+        )
+
+        st.plotly_chart(
+            fig2,
+            use_container_width=True
+        )
+
+        # =================================================
+        # APLICACIONES
+        # =================================================
+
+        st.header("🧠 Aplicaciones sugeridas")
+
+        aplicaciones = [
+
+            "🚗 Componentes automotrices y ejes mecánicos",
+
+            "✈️ Partes estructurales para aeronaves y maquinaria",
+
+            "🏗️ Vigas, soportes y estructuras industriales",
+
+            "⚙️ Engranes, tornillos y piezas de alto desgaste",
+
+            "🔩 Herramientas industriales y moldes",
+
+            "🚂 Sistemas ferroviarios y piezas sometidas a carga",
+
+            "🏭 Tuberías industriales y recipientes de presión",
+
+            "🛠️ Partes para maquinaria pesada",
+
+            "🚲 Componentes metálicos para bicicletas y scooters",
+
+            "🔧 Estructuras soldables y fabricación metálica"
+        ]
+
+        for app in aplicaciones[:5]:
+
+            st.success(app)
+
+# =========================================================
+# TAB 2 — BUSCADOR
+# =========================================================
+
+with tab2:
+
+    st.header("🔍 Buscar un material")
+
+    st.info("""
+    🌸 Puedes buscar materiales como:
+
+    - Stainless steel
+    - Alloy steel
+    - Carbon steel
+    - Titanium alloys
+    - Aluminum alloys
+    - Copper alloys
+    """)
+
+    busqueda = st.text_input(
+        "💖 Escribe el nombre del material"
     )
 
-    st.plotly_chart(
-        fig2,
-        use_container_width=True
-    )
+    if busqueda:
 
-# ============================================
-# DATASET
-# ============================================
+        resultados = df[
+            df["Material"]
+            .astype(str)
+            .str.contains(
+                busqueda,
+                case=False,
+                na=False
+            )
+        ]
 
-st.header("📋 Base de datos")
+        if len(resultados) > 0:
 
-st.dataframe(
-    df,
-    use_container_width=True
-)
+            material = resultados.iloc[0]
+
+            st.success(
+                f"✨ Material encontrado: {material['Material']}"
+            )
+
+            # =============================================
+            # INFO BREVE
+            # =============================================
+
+            st.markdown("""
+            <div class="cute-box">
+
+            🌸 Este material posee propiedades mecánicas útiles
+            para aplicaciones industriales donde se requiere
+            resistencia, durabilidad y estabilidad estructural.
+
+            </div>
+            """, unsafe_allow_html=True)
+
+            # =============================================
+            # PROPIEDADES
+            # =============================================
+
+            st.subheader("📋 Propiedades")
+
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+
+                st.metric(
+                    "💪 Su",
+                    material["Su"]
+                )
+
+                st.metric(
+                    "⚙️ Sy",
+                    material["Sy"]
+                )
+
+            with col2:
+
+                st.metric(
+                    "🌸 A5",
+                    material["A5"]
+                )
+
+                st.metric(
+                    "🧁 Bhn",
+                    material["Bhn"]
+                )
+
+            with col3:
+
+                st.metric(
+                    "📏 E",
+                    material["E"]
+                )
+
+                st.metric(
+                    "🐹 G",
+                    material["G"]
+                )
+
+            # =============================================
+            # APLICACIÓN INDUSTRIAL
+            # =============================================
+
+            st.subheader("🏭 Aplicación industrial sugerida")
+
+            if material["Su"] > 900:
+
+                st.info("""
+                💖 Recomendado para engranes,
+                maquinaria pesada y componentes
+                sometidos a esfuerzos elevados.
+                """)
+
+            elif material["A5"] > 25:
+
+                st.info("""
+                🌸 Excelente para estructuras soldables,
+                fabricación metálica y piezas deformables.
+                """)
+
+            else:
+
+                st.info("""
+                🎀 Adecuado para aplicaciones
+                mecánicas generales e industriales.
+                """)
+
+        else:
+
+            st.error(
+                "❌ No se encontró el material"
+            )

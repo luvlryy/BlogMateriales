@@ -1,14 +1,13 @@
 # =========================================================
-# 💖 MATERIAL GOSSIP AI 💖
-# Y2K INTERNET MAGAZINE EDITION ✨
-# Inspirado en Disney/GirlSense/2008 internet
+# 💖 MATERIAL GIRL ONLINE 💖
+# Y2K INTERNET MATERIALS WORLD ✨
+# versión ultra aesthetic 2007
 # =========================================================
 
 import streamlit as st
 import pandas as pd
 import numpy as np
 import random
-import time
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -20,352 +19,13 @@ from sklearn.metrics.pairwise import euclidean_distances
 # =========================================================
 
 st.set_page_config(
-    page_title="💖 Material Gossip AI 💖",
-    page_icon="🎀",
+    page_title="Material Girl Online 💖",
+    page_icon="💿",
     layout="wide"
 )
 
 # =========================================================
-# CSS Y2K EXTREMO
-# =========================================================
-
-st.markdown("""
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
-
-html, body, [class*="css"] {
-    font-family: 'Fredoka', sans-serif;
-}
-
-/* =========================================================
-FONDO PRINCIPAL
-========================================================= */
-
-.stApp {
-
-    background:
-    linear-gradient(
-        180deg,
-        #ffb7da 0%,
-        #ffd6ea 20%,
-        #fff0f7 45%,
-        #ffe3f4 70%,
-        #f1fff8 100%
-    );
-
-    background-attachment: fixed;
-}
-
-/* =========================================================
-TOP HEADER
-========================================================= */
-
-.top-banner {
-
-    background:
-    linear-gradient(
-        90deg,
-        #ff4fa1,
-        #ff89c5,
-        #ffb6d9
-    );
-
-    padding: 18px;
-
-    border-radius: 25px;
-
-    border: 6px solid white;
-
-    text-align: center;
-
-    color: white;
-
-    font-size: 40px;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 0 25px rgba(255,20,147,0.5);
-
-    margin-bottom: 20px;
-}
-
-/* =========================================================
-SIDEBAR
-========================================================= */
-
-section[data-testid="stSidebar"] {
-
-    background:
-    linear-gradient(
-        180deg,
-        #ff7bbb,
-        #ffd0e8
-    );
-
-    border-right: 8px solid #ff4fa1;
-}
-
-/* =========================================================
-TITULOS
-========================================================= */
-
-h1 {
-
-    color: #ff2f92 !important;
-
-    text-align: center;
-
-    font-size: 70px !important;
-
-    text-shadow:
-        3px 3px white,
-        5px 5px #ffb7da;
-
-    background: white;
-
-    border:
-        6px solid #ff8fc7;
-
-    border-radius: 25px;
-
-    padding: 15px;
-}
-
-h2, h3 {
-
-    color: #ff4fa1 !important;
-
-    text-shadow:
-        2px 2px white;
-}
-
-/* =========================================================
-CAJAS
-========================================================= */
-
-.cute-box {
-
-    background:
-    linear-gradient(
-        180deg,
-        #fff8fc,
-        #ffe7f4
-    );
-
-    border:
-        5px solid #ff9ed1;
-
-    border-radius: 30px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    box-shadow:
-        0 0 25px rgba(255,105,180,0.3);
-}
-
-/* =========================================================
-BOTONES
-========================================================= */
-
-.stButton>button {
-
-    background:
-    linear-gradient(
-        180deg,
-        #ff5cad,
-        #ff9ed1
-    );
-
-    color: white;
-
-    border:
-        4px solid white;
-
-    border-radius: 20px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    height: 3.5em;
-
-    width: 100%;
-
-    box-shadow:
-        0 4px 15px rgba(255,20,147,0.4);
-}
-
-/* =========================================================
-INPUTS
-========================================================= */
-
-.stTextInput input {
-
-    background: white;
-
-    border:
-        4px solid #ff9ed1 !important;
-
-    border-radius: 18px !important;
-
-    color: #ff2f92;
-
-    font-size: 18px;
-}
-
-/* =========================================================
-SLIDERS
-========================================================= */
-
-.stSlider {
-
-    background: rgba(255,255,255,0.3);
-
-    padding: 10px;
-
-    border-radius: 15px;
-}
-
-/* =========================================================
-TABS
-========================================================= */
-
-.stTabs [data-baseweb="tab"] {
-
-    background: white;
-
-    border-radius: 20px 20px 0px 0px;
-
-    border:
-        4px solid #ff9ed1;
-
-    margin-right: 10px;
-
-    padding: 15px;
-
-    font-size: 18px;
-
-    color: #ff4fa1;
-}
-
-/* =========================================================
-DATAFRAME
-========================================================= */
-
-[data-testid="stDataFrame"] {
-
-    border:
-        5px solid #ff9ed1;
-
-    border-radius: 25px;
-}
-
-/* =========================================================
-SCROLL
-========================================================= */
-
-::-webkit-scrollbar {
-
-    width: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-
-    background: #ff7bbb;
-
-    border-radius: 20px;
-}
-
-/* =========================================================
-MARCOS
-========================================================= */
-
-.y2k-card {
-
-    background: white;
-
-    border:
-        5px solid #ff9ed1;
-
-    border-radius: 30px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    box-shadow:
-        0 0 20px rgba(255,105,180,0.25);
-}
-
-</style>
-
-""", unsafe_allow_html=True)
-
-# =========================================================
-# HEADER
-# =========================================================
-
-st.markdown("""
-<div class='top-banner'>
-💖 MATERIAL GOSSIP AI 💖<br>
-✨ la revista más chismosa de ingeniería ✨
-</div>
-""", unsafe_allow_html=True)
-
-# =========================================================
-# TITULO
-# =========================================================
-
-st.title("🎀 MATERIAL MATCH MAGAZINE 🎀")
-
-# =========================================================
-# IMAGENES Y2K
-# =========================================================
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.image(
-        "https://i.pinimg.com/736x/4b/51/8c/4b518ce4dc0d7e1c0d48cb4e8b42c06d.jpg"
-    )
-
-with col2:
-    st.image(
-        "https://i.pinimg.com/736x/e4/66/17/e466174fefcb31b8d02cbd7a1fdfe91b.jpg"
-    )
-
-with col3:
-    st.image(
-        "https://i.pinimg.com/736x/f2/72/70/f272708da7d9c6e8f1d09d4aefbde6d9.jpg"
-    )
-
-# =========================================================
-# INTRO
-# =========================================================
-
-st.markdown("""
-<div class='cute-box'>
-
-## 🌸 Bienvenida bestie 🌸
-
-Aquí puedes:
-
-✨ Buscar materiales  
-✨ Encontrar el mejor material con IA  
-✨ Leer chismes metalúrgicos  
-✨ Jugar Flappy Bunny Materials  
-✨ Aprender ingeniería de materiales de manera cute 💅
-
-</div>
-""", unsafe_allow_html=True)
-
-# =========================================================
-# CARGAR EXCEL
+# CARGAR BASE DE DATOS
 # =========================================================
 
 df = pd.read_excel("Data_convertido.xlsx")
@@ -377,7 +37,7 @@ df.columns = (
 )
 
 # =========================================================
-# COLUMNAS
+# COLUMNAS NUMERICAS
 # =========================================================
 
 columnas_numericas = [
@@ -399,14 +59,269 @@ for col in columnas_numericas:
 df = df.dropna(subset=columnas_numericas)
 
 # =========================================================
+# CSS Y2K EXTREMO
+# =========================================================
+
+st.markdown("""
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* FONDO */
+
+.stApp {
+
+    background:
+    linear-gradient(
+        180deg,
+        #ffd8ee 0%,
+        #ffeefe 25%,
+        #fff7fb 55%,
+        #f2fff7 100%
+    );
+
+    background-attachment: fixed;
+}
+
+/* SIDEBAR */
+
+section[data-testid="stSidebar"] {
+
+    background:
+    linear-gradient(
+        180deg,
+        #ff7dbf,
+        #ffc9e4
+    );
+
+    border-right: 6px solid #ff4f9a;
+}
+
+/* TITULO */
+
+h1 {
+
+    color: #ff2f92 !important;
+
+    text-align: center;
+
+    font-size: 75px !important;
+
+    text-shadow:
+        3px 3px white,
+        6px 6px #ffb7d5;
+
+    background: white;
+
+    border:
+        6px solid #ff8dc5;
+
+    border-radius: 35px;
+
+    padding: 20px;
+
+    box-shadow:
+        0px 0px 25px rgba(255,105,180,0.5);
+}
+
+/* SUBTITULOS */
+
+h2, h3 {
+
+    color: #ff4fa1 !important;
+
+    text-shadow: 2px 2px white;
+}
+
+/* CAJAS */
+
+.cute-box {
+
+    background:
+    linear-gradient(
+        180deg,
+        #fff7fb,
+        #ffe3f2
+    );
+
+    border: 5px solid #ff9cc8;
+
+    border-radius: 30px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 0 20px rgba(255,105,180,0.35);
+}
+
+/* BOTONES */
+
+.stButton>button {
+
+    background:
+    linear-gradient(
+        180deg,
+        #ff5fad,
+        #ff9bd0
+    );
+
+    color: white;
+
+    border: 4px solid white;
+
+    border-radius: 20px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    height: 3.5em;
+
+    width: 100%;
+
+    box-shadow:
+        0 4px 10px rgba(255,105,180,0.4);
+}
+
+/* INPUTS */
+
+.stTextInput input {
+
+    background: white;
+
+    border:
+        4px solid #ff9ed1 !important;
+
+    border-radius: 18px !important;
+
+    color: #ff2f92;
+}
+
+/* SLIDERS */
+
+.stSlider {
+
+    background: rgba(255,255,255,0.3);
+
+    padding: 10px;
+
+    border-radius: 20px;
+}
+
+/* TABS */
+
+.stTabs [data-baseweb="tab"] {
+
+    background: white;
+
+    border-radius: 20px 20px 0px 0px;
+
+    border: 4px solid #ff9ed1;
+
+    margin-right: 10px;
+
+    padding: 12px;
+
+    font-size: 18px;
+
+    color: #ff5ea8;
+}
+
+/* DATAFRAME */
+
+[data-testid="stDataFrame"] {
+
+    border:
+        5px solid #ff9ed1;
+
+    border-radius: 20px;
+}
+
+/* METRICS */
+
+[data-testid="metric-container"] {
+
+    background: white;
+
+    border:
+        4px solid #ffb3d9;
+
+    border-radius: 25px;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #ff8fc7;
+
+    border-radius: 20px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# =========================================================
+# HEADER
+# =========================================================
+
+st.title("💖 MATERIAL GIRL ONLINE 💖")
+
+st.markdown("""
+<div class="cute-box">
+
+<h2>✨ Bienvenida al laboratorio más fabuloso del internet ✨</h2>
+
+💿 Encuentra materiales  
+💅 Aprende propiedades  
+🧪 Descubre tratamientos térmicos  
+🎮 Juega y desbloquea materiales  
+📰 Lee chismecitos metalúrgicos  
+
+</div>
+""", unsafe_allow_html=True)
+
+# =========================================================
+# IMAGENES Y2K
+# =========================================================
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.image(
+        "https://i.pinimg.com/736x/5d/61/5e/5d615e6d05d8fd9dc3c4b3e6e8186f9f.jpg"
+    )
+
+with col2:
+    st.image(
+        "https://i.pinimg.com/736x/90/6c/8e/906c8e09b9a90c859f6fd16e6fdbd2e0.jpg"
+    )
+
+with col3:
+    st.image(
+        "https://i.pinimg.com/736x/70/2f/79/702f79b3af8f60f8914a14e24f17f9f5.jpg"
+    )
+
+# =========================================================
 # TABS
 # =========================================================
 
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💖 Match IA",
-    "🔍 Buscar",
-    "📰 Chismes",
-    "🎮 Flappy Bunny"
+    "💖 Recomendador",
+    "🔍 Buscador",
+    "📰 Material Gossip",
+    "🎮 Juego"
 ])
 
 # =========================================================
@@ -415,19 +330,19 @@ tab1, tab2, tab3, tab4 = st.tabs([
 
 with tab1:
 
-    st.header("💅 Encuentra tu material ideal")
+    st.header("💅 Material Match AI")
 
-    st.sidebar.title("🎀 Propiedades deseadas")
+    st.sidebar.title("🎀 Configura tu material")
 
     uts = st.sidebar.slider(
-        "💪 Resistencia última",
+        "💪 Resistencia máxima",
         int(df["Su"].min()),
         int(df["Su"].max()),
         int(df["Su"].mean())
     )
 
     ys = st.sidebar.slider(
-        "⚙️ Yield Strength",
+        "⚙️ Límite elástico",
         int(df["Sy"].min()),
         int(df["Sy"].max()),
         int(df["Sy"].mean())
@@ -448,20 +363,24 @@ with tab1:
     )
 
     young = st.sidebar.slider(
-        "📏 Young Modulus",
+        "📏 Módulo Young",
         int(df["E"].min()),
         int(df["E"].max()),
         int(df["E"].mean())
     )
 
     corte = st.sidebar.slider(
-        "✨ Shear Modulus",
+        "🐰 Módulo cortante",
         int(df["G"].min()),
         int(df["G"].max()),
         int(df["G"].mean())
     )
 
-    if st.sidebar.button("💖 ENCONTRAR 💖"):
+    buscar = st.sidebar.button(
+        "✨ Encontrar materiales ✨"
+    )
+
+    if buscar:
 
         features = [
             "Su",
@@ -496,19 +415,19 @@ with tab1:
 
         mejores = df.iloc[indices].copy()
 
-        mejores["Compatibilidad"] = [
+        mejores["Compatibilidad %"] = [
             round(100 / (1 + d), 2)
             for d in distancias[0][indices]
         ]
 
-        st.success("✨ materiales encontrados bestie ✨")
+        st.header("💖 Materiales recomendados")
 
         st.dataframe(
             mejores[
                 [
                     "Material",
                     "Heat treatment",
-                    "Compatibilidad"
+                    "Compatibilidad %"
                 ]
             ],
             use_container_width=True
@@ -518,14 +437,15 @@ with tab1:
             mejores,
             x="Bhn",
             y="Su",
-            size="Compatibilidad",
             color="Material",
+            size="Compatibilidad %",
             text="Material"
         )
 
         fig.update_layout(
             paper_bgcolor="#fff0f7",
-            plot_bgcolor="#fff7fb"
+            plot_bgcolor="#fff8fc",
+            height=600
         )
 
         st.plotly_chart(
@@ -539,25 +459,26 @@ with tab1:
 
 with tab2:
 
-    st.header("🔍 Busca materiales")
+    st.header("🔍 Buscador inteligente")
 
     busqueda = st.text_input(
-        "🎀 escribe algo"
+        "💖 Busca un material"
     )
 
+    traducciones = {
+
+        "acero": "steel",
+        "plata": "silver",
+        "aluminio": "aluminum",
+        "cobre": "copper",
+        "titanio": "titanium",
+        "hierro": "iron",
+        "oro": "gold",
+        "aleacion": "alloy",
+        "duro": "hard"
+    }
+
     if busqueda:
-
-        traducciones = {
-
-            "acero": "steel",
-            "plata": "silver",
-            "aluminio": "aluminum",
-            "cobre": "copper",
-            "titanio": "titanium",
-            "hierro": "iron",
-            "oro": "gold",
-            "aleacion": "alloy"
-        }
 
         palabra = busqueda.lower()
 
@@ -594,7 +515,7 @@ with tab2:
         if len(resultados) > 0:
 
             st.success(
-                f"💖 {len(resultados)} resultados encontrados"
+                f"✨ {len(resultados)} materiales encontrados"
             )
 
             for i in range(
@@ -604,65 +525,61 @@ with tab2:
                 material = resultados.iloc[i]
 
                 st.markdown(f"""
-                <div class='cute-box'>
+                <div class="cute-box">
 
-                <h2>✨ {material['Material']}</h2>
+                <h2>💖 {material['Material']}</h2>
 
-                💪 Resistencia: {material['Su']}<br>
-                ⚙️ Yield: {material['Sy']}<br>
-                🌸 Elongación: {material['A5']}<br>
-                🧁 Dureza: {material['Bhn']}<br>
+                ⚙️ Tratamiento:
+                {material['Heat treatment']}
 
-                💅 Gossip:
-                "este material anda siendo icónico en aplicaciones industriales"
+                💪 Resistencia:
+                {material['Su']}
+
+                🌸 Elongación:
+                {material['A5']}
+
+                🧁 Dureza:
+                {material['Bhn']}
+
+                💅 Chismecito:
+                Este material es fabuloso para
+                componentes mecánicos y estructuras.
 
                 </div>
                 """, unsafe_allow_html=True)
 
         else:
 
-            st.error("😭 no encontré nada bestie")
+            st.error("❌ No encontré nada bestie")
 
 # =========================================================
-# TAB 3 CHISMES
+# TAB 3 GOSSIP
 # =========================================================
 
 with tab3:
 
-    st.header("📰 Material Gossip")
+    st.header("📰 MATERIAL GOSSIP")
 
     chismes = [
 
-        """
-        💅 Stainless Steel volvió a humillar
-        a todos en corrosión.
-        Sigue siendo la reina.
-        """,
+        "💅 Stainless steel sigue siendo la reina de la corrosión.",
 
-        """
-        ✈️ Titanium fue visto
-        en aplicaciones aeroespaciales
-        porque pesa poquito pero aguanta TODO.
-        """,
+        "✨ Aluminum anda presumiendo que pesa menos que todos.",
 
-        """
-        ⚡ Copper sigue siendo
-        el conductor eléctrico favorito.
-        literalmente una diva.
-        """,
+        "🧪 Titanium volvió a ser visto en aplicaciones aeroespaciales.",
 
-        """
-        🧁 Aluminum anda presumiendo
-        que es ligero y bonito
-        pero le falta fuerza 😭
-        """
+        "⚡ Copper literalmente no deja de conducir electricidad.",
+
+        "🚗 Steel anda dominando automóviles otra vez."
     ]
 
     for c in chismes:
 
         st.markdown(f"""
-        <div class='cute-box'>
+        <div class="cute-box">
+
         <h3>{c}</h3>
+
         </div>
         """, unsafe_allow_html=True)
 
@@ -672,94 +589,86 @@ with tab3:
 
 with tab4:
 
-    st.header("🎮 Flappy Bunny Materials")
+    st.header("🎮 MATERIAL POP QUIZ")
 
-    st.markdown("""
-    <div class='cute-box'>
+    preguntas = [
 
-    🐰 Ayuda al bunny a caer en un material.
+        {
+            "pregunta":
+            "✨ ¿Qué material es famoso por ser ligero y usado en aviones?",
 
-    Dependiendo del material desbloqueas:
-    ✨ propiedades
-    ✨ datos curiosos
-    ✨ aplicaciones
+            "opciones":
+            ["Titanium", "Aluminum", "Copper"],
+
+            "correcta":
+            "Aluminum",
+
+            "dato":
+            "💖 El aluminio es súper ligero y resistente."
+        },
+
+        {
+            "pregunta":
+            "⚡ ¿Cuál es excelente conductor eléctrico?",
+
+            "opciones":
+            ["Copper", "Steel", "Titanium"],
+
+            "correcta":
+            "Copper",
+
+            "dato":
+            "⚡ El cobre se usa muchísimo en cables."
+        },
+
+        {
+            "pregunta":
+            "💎 ¿Cuál es súper resistente a corrosión?",
+
+            "opciones":
+            ["Stainless Steel", "Lead", "Tin"],
+
+            "correcta":
+            "Stainless Steel",
+
+            "dato":
+            "✨ El acero inoxidable resiste corrosión increíblemente."
+        }
+
+    ]
+
+    pregunta = random.choice(preguntas)
+
+    st.markdown(f"""
+    <div class="cute-box">
+
+    <h2>{pregunta['pregunta']}</h2>
 
     </div>
     """, unsafe_allow_html=True)
 
-    materiales_juego = [
+    respuesta = st.radio(
+        "💖 Escoge una opción",
+        pregunta["opciones"]
+    )
 
-        {
-            "nombre": "Titanium",
-            "emoji": "🚀",
-            "dato": "Muy ligero y super resistente",
-            "uso": "Aeroespacial"
-        },
+    if st.button("✨ Revisar respuesta ✨"):
 
-        {
-            "nombre": "Copper",
-            "emoji": "⚡",
-            "dato": "Excelente conductor",
-            "uso": "Electrónica"
-        },
+        if respuesta == pregunta["correcta"]:
 
-        {
-            "nombre": "Steel",
-            "emoji": "🏗️",
-            "dato": "Muy fuerte y barato",
-            "uso": "Construcción"
-        },
+            st.balloons()
 
-        {
-            "nombre": "Aluminum",
-            "emoji": "✨",
-            "dato": "Ligero y resistente",
-            "uso": "Aviones y autos"
-        }
-    ]
+            st.success(f"""
+            🌸 CORRECTO 🌸
 
-    st.markdown("## 🐰")
-    st.progress(30)
+            {pregunta['dato']}
+            """)
 
-    if st.button("💖 VOLAR 💖"):
+        else:
 
-        st.balloons()
+            st.error(f"""
+            ❌ Incorrecto bestie
 
-        elegido = random.choice(materiales_juego)
-
-        st.success(f"""
-        🌸 Bunny cayó en:
-
-        {elegido['emoji']} {elegido['nombre']}
-
-        ✨ Dato:
-        {elegido['dato']}
-
-        🏭 Uso:
-        {elegido['uso']}
-
-        💅 Chismecito:
-        "todo mundo quiere trabajar con este material"
-        """)
-
-        st.image(
-            "https://media.tenor.com/JhQ8tMUz6v8AAAAC/pink-glitter.gif"
-        )
-
-# =========================================================
-# FOOTER
-# =========================================================
-
-st.markdown("""
-<div class='cute-box'>
-
-<center>
-
-💖 MATERIAL GOSSIP AI 💖<br>
-
-✨ ingeniería de materiales pero fashion ✨
-
-</center>
-
-</div>
-""", unsafe_allow_html=True)
+            La respuesta era:
+            {pregunta['correcta']}
+            """)

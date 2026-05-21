@@ -1,11 +1,12 @@
 # =========================================================
 # 🌸 MATERIAL MATCH AI 🌸
-# Pinky Matcha Latte Ultimate Edition 🐰🎀
+# Y2K Pinky Matcha Ultimate Edition 🐰🎀✨
 # =========================================================
 
 import streamlit as st
 import pandas as pd
 import numpy as np
+import random
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -23,7 +24,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CSS GIRLIE ULTRA CUTE 🌸
+# CSS Y2K GIRLIE
 # =========================================================
 
 st.markdown("""
@@ -41,7 +42,7 @@ html, body, [class*="css"] {
     linear-gradient(
         135deg,
         #ffe4ec 0%,
-        #fff0f6 30%,
+        #fff0f5 40%,
         #e8fff1 100%
     );
 }
@@ -56,7 +57,8 @@ section[data-testid="stSidebar"] {
 h1 {
     text-align: center;
     color: #ff4f9a !important;
-    font-size: 65px !important;
+    font-size: 70px !important;
+    text-shadow: 2px 2px white;
 }
 
 /* Subtítulos */
@@ -89,12 +91,6 @@ h2, h3 {
     font-weight: bold;
 }
 
-/* Input */
-.stTextInput>div>div>input {
-    border-radius: 15px;
-    border: 2px solid #ffb3c6;
-}
-
 /* Cute box */
 .cute-box {
     background: rgba(255,255,255,0.75);
@@ -102,6 +98,11 @@ h2, h3 {
     border-radius: 25px;
     padding: 25px;
     margin-bottom: 20px;
+}
+
+/* Input */
+.stTextInput input {
+    border-radius: 15px !important;
 }
 
 /* Tabs */
@@ -122,13 +123,12 @@ st.title("🌸 Material Match AI 🌸")
 st.markdown("""
 <div class="cute-box">
 
-### 🐰 Bienvenida al laboratorio más cute de materiales 🎀
+### 🐰 Welcome to the cutest materials lab 🎀
 
-✨ Busca materiales según propiedades mecánicas  
-✨ Descubre aplicaciones reales  
-✨ Explora materiales de ingeniería de forma divertida 💖
-
-🌸 Matcha vibes + materiales + IA 🌸
+✨ Busca materiales  
+✨ Aprende jugando  
+✨ Explora propiedades mecánicas  
+✨ Matcha + Y2K + ingeniería 💖
 
 </div>
 """, unsafe_allow_html=True)
@@ -137,11 +137,7 @@ st.markdown("""
 # CARGAR EXCEL
 # =========================================================
 
-df = pd.read_excel("materiales_sin_aceros.xlsx")
-
-# =========================================================
-# LIMPIAR COLUMNAS
-# =========================================================
+df = pd.read_excel("Data_convertido.xlsx")
 
 df.columns = (
     df.columns
@@ -175,94 +171,69 @@ df = df.dropna(subset=columnas_numericas)
 # TABS
 # =========================================================
 
-tab1, tab2 = st.tabs([
-    "🎀 Recomendador IA",
-    "🔍 Buscar material"
+tab1, tab2, tab3 = st.tabs([
+    "🎀 Recomendador",
+    "🔍 Buscar Material",
+    "🎮 Material Game"
 ])
 
 # =========================================================
-# TAB 1
+# TAB 1 — RECOMENDADOR
 # =========================================================
 
 with tab1:
 
-    st.header("💖 Encuentra materiales compatibles")
+    st.header("💖 Material Recommender")
 
-    # =====================================================
-    # SIDEBAR
-    # =====================================================
-
-    st.sidebar.title("🎀 Propiedades deseadas")
+    st.sidebar.title("🎀 Desired Properties")
 
     uts = st.sidebar.slider(
-        "💪 Resistencia máxima",
+        "💪 Ultimate Strength",
         int(df["Su"].min()),
         int(df["Su"].max()),
         int(df["Su"].mean())
     )
 
     ys = st.sidebar.slider(
-        "⚙️ Límite elástico",
+        "⚙️ Yield Strength",
         int(df["Sy"].min()),
         int(df["Sy"].max()),
         int(df["Sy"].mean())
     )
 
     elong = st.sidebar.slider(
-        "🌸 Elongación",
+        "🌸 Elongation",
         int(df["A5"].min()),
         int(df["A5"].max()),
         int(df["A5"].mean())
     )
 
     hb = st.sidebar.slider(
-        "🧁 Dureza Brinell",
+        "🧁 Brinell Hardness",
         int(df["Bhn"].min()),
         int(df["Bhn"].max()),
         int(df["Bhn"].mean())
     )
 
     young = st.sidebar.slider(
-        "📏 Módulo de Young",
+        "📏 Young Modulus",
         int(df["E"].min()),
         int(df["E"].max()),
         int(df["E"].mean())
     )
 
     corte = st.sidebar.slider(
-        "🐹 Módulo de corte",
+        "🐹 Shear Modulus",
         int(df["G"].min()),
         int(df["G"].max()),
         int(df["G"].mean())
     )
 
-    tratamiento = st.sidebar.selectbox(
-        "🔥 Tratamiento térmico",
-        ["Todos"] + sorted(
-            df["Heat treatment"]
-            .dropna()
-            .astype(str)
-            .unique()
-        )
-    )
-
     buscar = st.sidebar.button(
-        "✨ Buscar materiales ✨"
+        "✨ Find Materials ✨"
     )
-
-    # =====================================================
-    # RECOMENDADOR
-    # =====================================================
 
     if buscar:
-
-        datos = df.copy()
-
-        if tratamiento != "Todos":
-
-            datos = datos[
-                datos["Heat treatment"] == tratamiento
-            ]
 
         features = [
             "Su",
@@ -275,9 +246,7 @@ with tab1:
 
         scaler = MinMaxScaler()
 
-        X = scaler.fit_transform(
-            datos[features]
-        )
+        X = scaler.fit_transform(df[features])
 
         usuario = scaler.transform([[
             uts,
@@ -297,72 +266,38 @@ with tab1:
             distancias[0]
         )[:5]
 
-        mejores = datos.iloc[indices].copy()
+        mejores = df.iloc[indices].copy()
 
-        mejores["Similitud %"] = [
+        mejores["Similarity %"] = [
             round(100 / (1 + d), 2)
             for d in distancias[0][indices]
         ]
 
-        # =================================================
-        # RESULTADOS
-        # =================================================
-
-        st.header("🎀 Materiales recomendados")
+        st.header("🎀 Suggested Materials")
 
         st.dataframe(
             mejores[
                 [
                     "Material",
                     "Heat treatment",
-                    "Similitud %"
+                    "Similarity %"
                 ]
             ],
             use_container_width=True
         )
 
         # =================================================
-        # TOP MATERIAL
+        # GRÁFICAS
         # =================================================
 
-        mejor = mejores.iloc[0]
-
-        col1, col2, col3 = st.columns(3)
-
-        with col1:
-
-            st.metric(
-                "🌸 Material",
-                mejor["Material"]
-            )
-
-        with col2:
-
-            st.metric(
-                "✨ Similitud",
-                f"{mejor['Similitud %']}%"
-            )
-
-        with col3:
-
-            st.metric(
-                "🔥 Tratamiento",
-                mejor["Heat treatment"]
-            )
-
-        # =================================================
-        # SCATTER FUNCIONAL
-        # =================================================
-
-        st.header("📊 Comparación visual")
+        st.header("📊 Interactive Comparison")
 
         fig = px.scatter(
             mejores,
             x="Bhn",
             y="Su",
             color="Material",
-            size="Similitud %",
-            hover_name="Material",
+            size="Similarity %",
             text="Material"
         )
 
@@ -373,7 +308,6 @@ with tab1:
         fig.update_layout(
             paper_bgcolor="#fff0f5",
             plot_bgcolor="#fffafc",
-            font=dict(size=14),
             height=600
         )
 
@@ -383,10 +317,10 @@ with tab1:
         )
 
         # =================================================
-        # RADAR CHART
+        # RADAR
         # =================================================
 
-        st.header("🌸 Radar de propiedades")
+        mejor = mejores.iloc[0]
 
         fig2 = go.Figure()
 
@@ -408,7 +342,7 @@ with tab1:
                 "G"
             ],
             fill='toself',
-            name='Deseado'
+            name='Desired'
         ))
 
         fig2.add_trace(go.Scatterpolar(
@@ -449,30 +383,32 @@ with tab1:
         # APLICACIONES
         # =================================================
 
-        st.header("🧠 Aplicaciones sugeridas")
+        st.header("🏭 Suggested Applications")
 
         aplicaciones = [
 
-            "🚗 Componentes automotrices y ejes mecánicos",
+            "🚗 Automotive shafts and gears",
 
-            "✈️ Partes estructurales para aeronaves y maquinaria",
+            "✈️ Aerospace structures",
 
-            "🏗️ Vigas, soportes y estructuras industriales",
+            "🏗️ Bridges and industrial structures",
 
-            "⚙️ Engranes, tornillos y piezas de alto desgaste",
+            "⚙️ High wear machine components",
 
-            "🔩 Herramientas industriales y moldes",
+            "🔩 Industrial tools and molds",
 
-            "🚂 Sistemas ferroviarios y piezas sometidas a carga",
+            "🚂 Railway components",
 
-            "🏭 Tuberías industriales y recipientes de presión",
+            "🏭 Pressure vessels and piping",
 
-            "🛠️ Partes para maquinaria pesada",
+            "🛠️ Heavy machinery",
 
-            "🚲 Componentes metálicos para bicicletas y scooters",
+            "🚲 Bicycle and scooter frames",
 
-            "🔧 Estructuras soldables y fabricación metálica"
+            "🔧 Weldable structures"
         ]
+
+        random.shuffle(aplicaciones)
 
         for app in aplicaciones[:5]:
 
@@ -484,131 +420,162 @@ with tab1:
 
 with tab2:
 
-    st.header("🔍 Buscar un material")
+    st.header("🔍 Smart Material Search")
 
     st.info("""
-    🌸 Puedes buscar materiales como:
+    🌸 Search in English or Spanish:
 
-    - Stainless steel
-    - Alloy steel
-    - Carbon steel
-    - Titanium alloys
-    - Aluminum alloys
-    - Copper alloys
+    Examples:
+    - steel
+    - silver
+    - titanium
+    - copper
+    - aluminum
+    - alloy
+    - acero
+    - aluminio
     """)
 
     busqueda = st.text_input(
-        "💖 Escribe el nombre del material"
+        "💖 Search material"
     )
 
     if busqueda:
 
+        traducciones = {
+
+            "acero": "steel",
+            "plata": "silver",
+            "aluminio": "aluminum",
+            "cobre": "copper",
+            "titanio": "titanium",
+            "hierro": "iron"
+        }
+
+        palabra = busqueda.lower()
+
+        if palabra in traducciones:
+
+            palabra = traducciones[palabra]
+
         resultados = df[
             df["Material"]
             .astype(str)
+            .str.lower()
             .str.contains(
-                busqueda,
-                case=False,
+                palabra,
                 na=False
             )
         ]
 
         if len(resultados) > 0:
 
-            material = resultados.iloc[0]
-
             st.success(
-                f"✨ Material encontrado: {material['Material']}"
+                f"✨ {len(resultados)} materials found!"
             )
 
-            # =============================================
-            # INFO BREVE
-            # =============================================
+            for i in range(
+                min(5, len(resultados))
+            ):
 
-            st.markdown("""
-            <div class="cute-box">
+                material = resultados.iloc[i]
 
-            🌸 Este material posee propiedades mecánicas útiles
-            para aplicaciones industriales donde se requiere
-            resistencia, durabilidad y estabilidad estructural.
+                st.markdown(f"""
+                <div class="cute-box">
 
-            </div>
-            """, unsafe_allow_html=True)
+                <h3>🌸 {material['Material']}</h3>
 
-            # =============================================
-            # PROPIEDADES
-            # =============================================
+                💪 Ultimate Strength: {material['Su']}  
+                ⚙️ Yield Strength: {material['Sy']}  
+                🌸 Elongation: {material['A5']}  
+                🧁 Hardness: {material['Bhn']}  
 
-            st.subheader("📋 Propiedades")
+                🏭 Suggested use:
+                Industrial structures, machinery,
+                tools and mechanical components.
 
-            col1, col2, col3 = st.columns(3)
-
-            with col1:
-
-                st.metric(
-                    "💪 Su",
-                    material["Su"]
-                )
-
-                st.metric(
-                    "⚙️ Sy",
-                    material["Sy"]
-                )
-
-            with col2:
-
-                st.metric(
-                    "🌸 A5",
-                    material["A5"]
-                )
-
-                st.metric(
-                    "🧁 Bhn",
-                    material["Bhn"]
-                )
-
-            with col3:
-
-                st.metric(
-                    "📏 E",
-                    material["E"]
-                )
-
-                st.metric(
-                    "🐹 G",
-                    material["G"]
-                )
-
-            # =============================================
-            # APLICACIÓN INDUSTRIAL
-            # =============================================
-
-            st.subheader("🏭 Aplicación industrial sugerida")
-
-            if material["Su"] > 900:
-
-                st.info("""
-                💖 Recomendado para engranes,
-                maquinaria pesada y componentes
-                sometidos a esfuerzos elevados.
-                """)
-
-            elif material["A5"] > 25:
-
-                st.info("""
-                🌸 Excelente para estructuras soldables,
-                fabricación metálica y piezas deformables.
-                """)
-
-            else:
-
-                st.info("""
-                🎀 Adecuado para aplicaciones
-                mecánicas generales e industriales.
-                """)
+                </div>
+                """, unsafe_allow_html=True)
 
         else:
 
             st.error(
-                "❌ No se encontró el material"
+                "❌ No materials found"
             )
+
+# =========================================================
+# TAB 3 — JUEGO
+# =========================================================
+
+with tab3:
+
+    st.header("🎮 Guess The Material!")
+
+    materiales = [
+
+        {
+            "pista":
+            "✨ Lightweight and used in airplanes",
+            "respuesta":
+            "aluminum"
+        },
+
+        {
+            "pista":
+            "💎 Very resistant and corrosion resistant",
+            "respuesta":
+            "stainless steel"
+        },
+
+        {
+            "pista":
+            "⚡ Excellent electrical conductor",
+            "respuesta":
+            "copper"
+        },
+
+        {
+            "pista":
+            "🚀 Strong and lightweight aerospace metal",
+            "respuesta":
+            "titanium"
+        }
+
+    ]
+
+    juego = random.choice(materiales)
+
+    st.markdown(f"""
+    <div class="cute-box">
+
+    ### 🐰 Clue:
+
+    {juego['pista']}
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    respuesta = st.text_input(
+        "🎀 Your answer"
+    )
+
+    if st.button("✨ Check answer ✨"):
+
+        if respuesta.lower() == juego["respuesta"]:
+
+            st.balloons()
+
+            st.success("""
+            🌸 CORRECT 🌸
+
+            You are officially a material science bunny engineer 🐰✨
+            """)
+
+        else:
+
+            st.error(f"""
+            ❌ Nope bestie 😭
+
+            Correct answer:
+            {juego['respuesta']}
+            """)

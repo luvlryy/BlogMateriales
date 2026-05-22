@@ -1,7 +1,6 @@
 # =========================================================
-# 💖 MATERIAL GIRL ONLINE 💖
-# Y2K INTERNET MATERIALS WORLD ✨
-# versión ultra aesthetic 2007
+# 🌐 CYBER MATERIALS LAB 2000 🌐
+# Y2K WEB SURFER EDITION - V2.0
 # =========================================================
 
 import streamlit as st
@@ -14,104 +13,108 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import euclidean_distances
 
 # =========================================================
-# CONFIG
+# CONFIGURACIÓN
 # =========================================================
 
 st.set_page_config(
-    page_title="Material Girl Online 💖",
-    page_icon="💿",
+    page_title="Cyber Materials 2000",
+    page_icon="💾",
     layout="wide"
 )
 
 # =========================================================
-# CARGAR BASE DE DATOS
+# CARGA DE BASE DE DATOS
 # =========================================================
 
 @st.cache_data
 def load_data():
-    # Usamos el archivo que nos mencionaste
     df = pd.read_excel("Data_convertido.xlsx")
     df.columns = df.columns.astype(str).str.strip()
     return df
 
 df = load_data()
 
-# =========================================================
-# COLUMNAS NUMERICAS
-# =========================================================
-
 columnas_numericas = ["Su", "Sy", "A5", "Bhn", "E", "G"]
-
 for col in columnas_numericas:
     df[col] = pd.to_numeric(df[col], errors="coerce")
-
 df = df.dropna(subset=columnas_numericas)
 
 # =========================================================
-# CSS Y2K EXTREMO
+# CSS RETRO Y2K / GEOCITIES VIBE
 # =========================================================
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
-
+/* Tipografía clásica de los 2000s */
 html, body, [class*="css"] {
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Verdana', sans-serif;
 }
 
-/* FONDO */
+/* Fondo oscuro cibernético */
 .stApp {
-    background: linear-gradient(180deg, #ffd8ee 0%, #ffeefe 25%, #fff7fb 55%, #f2fff7 100%);
-    background-attachment: fixed;
+    background-color: #000033;
+    background-image: radial-gradient(circle, #000066 10%, transparent 11%), 
+                      radial-gradient(circle, #000066 10%, transparent 11%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: #00FF00;
 }
 
-/* SIDEBAR */
+/* Sidebar tipo menú viejo */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #ff7dbf, #ffc9e4);
-    border-right: 6px solid #ff4f9a;
+    background-color: #C0C0C0;
+    color: black;
+    border-right: 4px outset #FFFFFF;
+}
+.stSidebar p, .stSidebar div, .stSidebar span, .stSidebar label {
+    color: black !important;
 }
 
-/* TITULO */
+/* Título de la página */
 h1 {
-    color: #ff2f92 !important;
+    font-family: 'Comic Sans MS', cursive;
+    color: #FFFF00 !important;
     text-align: center;
-    font-size: 65px !important;
-    text-shadow: 3px 3px white, 6px 6px #ffb7d5;
-    background: white;
-    border: 6px solid #ff8dc5;
-    border-radius: 35px;
+    font-size: 55px !important;
+    text-shadow: 3px 3px #FF0000;
+    border: 4px outset #FFFFFF;
+    background-color: #000080;
+    padding: 15px;
+}
+
+/* Cajas tipo Windows 95/98 */
+.retro-box {
+    background-color: #C0C0C0;
+    color: black;
+    border: 4px outset #FFFFFF;
     padding: 20px;
-    box-shadow: 0px 0px 25px rgba(255,105,180,0.5);
-}
-
-/* CAJAS */
-.cute-box {
-    background: linear-gradient(180deg, #fff7fb, #ffe3f2);
-    border: 5px solid #ff9cc8;
-    border-radius: 30px;
-    padding: 25px;
     margin-bottom: 25px;
-    box-shadow: 0 0 20px rgba(255,105,180,0.35);
+    font-family: 'Tahoma', sans-serif;
+}
+.retro-box h2, .retro-box h3 {
+    color: #000080 !important;
+    border-bottom: 2px solid #000080;
+    padding-bottom: 5px;
 }
 
-/* EXPANDERS (BLOG GOSSIP) */
+/* Etiquetas y expanders */
 .streamlit-expanderHeader {
-    font-size: 20px !important;
-    color: #ff2f92 !important;
-    background-color: #ffe3f2 !important;
-    border-radius: 15px !important;
-    border: 3px solid #ff9cc8 !important;
+    background-color: #000080 !important;
+    color: #FFFF00 !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border: 2px outset #FFFFFF !important;
 }
 
-/* TABS */
 .stTabs [data-baseweb="tab"] {
-    background: white;
-    border-radius: 20px 20px 0px 0px;
-    border: 4px solid #ff9ed1;
-    margin-right: 10px;
-    padding: 12px;
-    font-size: 18px;
-    color: #ff5ea8;
+    background-color: #C0C0C0;
+    border: 3px outset #FFFFFF;
+    color: black;
+    font-weight: bold;
+}
+.stTabs [aria-selected="true"] {
+    background-color: #000080;
+    color: #FFFF00 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -120,65 +123,69 @@ h1 {
 # HEADER
 # =========================================================
 
-st.title("💖 MATERIAL GIRL ONLINE 💖")
+st.title("🌐 CYBER MATERIALS LAB 2000 🌐")
+
+# Etiqueta Marquee clásica de los 2000s
+st.markdown("""
+<marquee style="font-size: 20px; color: #00FF00; font-family: 'Courier New';">
++++ BIENVENIDO AL DIRECTORIO DE MATERIALES V2.0 +++ NAVEGA CON PRECAUCIÓN +++ ÚLTIMA ACTUALIZACIÓN: AÑO 2007 +++
+</marquee>
+""", unsafe_allow_html=True)
 
 st.markdown("""
-<div class="cute-box">
-<h2 style="text-align:center; color:#ff4fa1;">✨ Bienvenida al laboratorio más fabuloso del internet ✨</h2>
-<p style="text-align:center; font-size:18px;">
-💿 Encuentra materiales | 💅 Aprende propiedades | 🧪 Descubre tratamientos térmicos <br> 🎮 Juega y desbloquea | 📰 Lee chismecitos metalúrgicos 
+<div class="retro-box">
+<h2 style="text-align:center;">🖥️ Portal Principal de Ingeniería</h2>
+<p style="text-align:center;">
+[ BUSCAR MATERIALES ] | [ CALCULAR PROPIEDADES ] | [ NOTICIAS METALÚRGICAS ] | [ FORO DE USUARIOS ]
 </p>
 </div>
 """, unsafe_allow_html=True)
 
 # =========================================================
-# IMAGENES Y2K (TUS IMÁGENES)
+# 📸 AQUI VA TU IMAGEN - SECCIÓN HEADER (3 COLUMNAS)
+# TAMAÑO SUGERIDO: 300x300 px (Formato Cuadrado 1:1)
 # =========================================================
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    try:
-        st.image("IMG_6304.JPG", caption="💖 That's hot")
-    except:
-        st.error("Falta IMG_6304.JPG")
+    # Cambia "foto_1.jpg" por el nombre de tu archivo
+    st.image("https://via.placeholder.com/300x300.png?text=FOTO+AQUI", caption="💾 Base de datos online")
 
 with col2:
-    try:
-        st.image("IMG_6305.JPG", caption="✨ Aesthetic vibes")
-    except:
-        st.error("Falta IMG_6305.JPG")
+    # Cambia "foto_2.jpg" por el nombre de tu archivo
+    st.image("https://via.placeholder.com/300x300.png?text=FOTO+AQUI", caption="⚡ Alta tecnología")
 
 with col3:
-    st.image("https://i.pinimg.com/736x/70/2f/79/702f79b3af8f60f8914a14e24f17f9f5.jpg", caption="💅 Material World")
+    # Cambia "foto_3.jpg" por el nombre de tu archivo
+    st.image("https://via.placeholder.com/300x300.png?text=FOTO+AQUI", caption="🔬 Análisis estructural")
 
 # =========================================================
-# TABS
+# TABS PRINCIPALES
 # =========================================================
 
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💖 Recomendador",
-    "🔍 Buscador bilingüe",
-    "📰 Material Gossip",
-    "🎮 Juego"
+    "💻 Calculadora IA",
+    "🔍 Motor de Búsqueda",
+    "📰 Tech Gossip",
+    "🕹️ Arcade Quiz"
 ])
 
 # =========================================================
-# TAB 1: RECOMENDADOR (Intacto, solo ajusté diseño)
+# TAB 1: RECOMENDADOR
 # =========================================================
 
 with tab1:
-    st.header("💅 Material Match AI")
-    st.sidebar.title("🎀 Configura tu material")
+    st.header("💻 Calculadora de Similitud Material")
+    
+    st.sidebar.markdown("### 🎛️ Panel de Control")
+    uts = st.sidebar.slider("Resistencia Máxima (Su)", int(df["Su"].min()), int(df["Su"].max()), int(df["Su"].mean()))
+    ys = st.sidebar.slider("Límite Elástico (Sy)", int(df["Sy"].min()), int(df["Sy"].max()), int(df["Sy"].mean()))
+    elong = st.sidebar.slider("Elongación % (A5)", int(df["A5"].min()), int(df["A5"].max()), int(df["A5"].mean()))
+    hb = st.sidebar.slider("Dureza Brinell (Bhn)", int(df["Bhn"].min()), int(df["Bhn"].max()), int(df["Bhn"].mean()))
+    young = st.sidebar.slider("Módulo Young (E)", int(df["E"].min()), int(df["E"].max()), int(df["E"].mean()))
+    corte = st.sidebar.slider("Módulo Cortante (G)", int(df["G"].min()), int(df["G"].max()), int(df["G"].mean()))
 
-    uts = st.sidebar.slider("💪 Resistencia máxima (Su)", int(df["Su"].min()), int(df["Su"].max()), int(df["Su"].mean()))
-    ys = st.sidebar.slider("⚙️ Límite elástico (Sy)", int(df["Sy"].min()), int(df["Sy"].max()), int(df["Sy"].mean()))
-    elong = st.sidebar.slider("🌸 Elongación (A5)", int(df["A5"].min()), int(df["A5"].max()), int(df["A5"].mean()))
-    hb = st.sidebar.slider("🧁 Dureza (Bhn)", int(df["Bhn"].min()), int(df["Bhn"].max()), int(df["Bhn"].mean()))
-    young = st.sidebar.slider("📏 Módulo Young (E)", int(df["E"].min()), int(df["E"].max()), int(df["E"].mean()))
-    corte = st.sidebar.slider("🐰 Módulo cortante (G)", int(df["G"].min()), int(df["G"].max()), int(df["G"].mean()))
-
-    if st.sidebar.button("✨ Encontrar materiales ✨"):
+    if st.sidebar.button("▶ Ejecutar Análisis"):
         features = ["Su", "Sy", "A5", "Bhn", "E", "G"]
         scaler = MinMaxScaler()
         X = scaler.fit_transform(df[features])
@@ -186,22 +193,30 @@ with tab1:
         distancias = euclidean_distances(usuario, X)
         indices = np.argsort(distancias[0])[:5]
         mejores = df.iloc[indices].copy()
-        mejores["Compatibilidad %"] = [round(100 / (1 + d), 2) for d in distancias[0][indices]]
+        mejores["Similitud %"] = [round(100 / (1 + d), 2) for d in distancias[0][indices]]
 
-        st.subheader("💖 Materiales que hacen 'Match' contigo")
-        st.dataframe(mejores[["Material", "Heat treatment", "Compatibilidad %"]], use_container_width=True)
+        st.subheader("📊 Resultados del Sistema")
+        st.dataframe(mejores[["Material", "Heat treatment", "Similitud %"]], use_container_width=True)
 
-        fig = px.scatter(mejores, x="Bhn", y="Su", color="Material", size="Compatibilidad %", text="Material")
-        fig.update_layout(paper_bgcolor="#fff0f7", plot_bgcolor="#fff8fc", height=500)
+        # Gráfico adaptado a colores oscuros
+        fig = px.scatter(mejores, x="Bhn", y="Su", color="Material", size="Similitud %", text="Material")
+        fig.update_layout(paper_bgcolor="#C0C0C0", plot_bgcolor="#FFFFFF", height=500)
         st.plotly_chart(fig, use_container_width=True)
 
 # =========================================================
-# TAB 2: BUSCADOR BILINGÜE
+# TAB 2: BUSCADOR (CORREGIDO)
 # =========================================================
 
 with tab2:
-    st.header("🔍 Buscador / Search Engine")
-    busqueda = st.text_input("💖 Busca un material (Ej: Acero, Steel, Cobre, Copper)")
+    st.header("🔍 Motor de Búsqueda Web 2.0")
+    
+    st.markdown("""
+    <div class="retro-box">
+    Ingrese su término de búsqueda (ej. Steel, Acero, Annealed, Aluminum). El motor buscará coincidencias exactas y parciales.
+    </div>
+    """, unsafe_allow_html=True)
+
+    busqueda = st.text_input("Término de búsqueda:")
 
     traducciones = {
         "acero": "steel", "plata": "silver", "aluminio": "aluminum",
@@ -211,141 +226,140 @@ with tab2:
     }
 
     if busqueda:
+        # Limpieza de entrada
         palabra = busqueda.lower().strip()
+        
+        # Check de traducción
         if palabra in traducciones:
             palabra = traducciones[palabra]
 
-        materiales_texto = df["Material"].astype(str).str.lower()
-        resultados = df[materiales_texto.str.contains(palabra, na=False)]
+        # Búsqueda robusta en las columnas de interés (ignorando mayúsculas y NaNs)
+        mask_material = df["Material"].astype(str).str.lower().str.contains(palabra, na=False)
+        mask_tratamiento = df["Heat treatment"].astype(str).str.lower().str.contains(palabra, na=False)
+        
+        resultados = df[mask_material | mask_tratamiento]
 
         if len(resultados) > 0:
-            st.success(f"✨ ¡OMG! Encontré {len(resultados)} materiales / Found {len(resultados)} materials")
+            st.success(f"✔️ Búsqueda exitosa: Se encontraron {len(resultados)} registros.")
             
-            for i in range(min(5, len(resultados))):
+            for i in range(min(10, len(resultados))):
                 material = resultados.iloc[i]
-                
-                # Chisme dinámico según propiedades
-                if material['Bhn'] > 200:
-                    chisme = "¡Este material es súper duro! Literalmente impenetrable, cero red flags estructurales. 💅"
-                elif material['A5'] > 20:
-                    chisme = "Súper flexible y aesthetic. Se estira un montón sin romperse, ideal para cuando necesitas adaptabilidad. 🧘‍♀️"
-                else:
-                    chisme = "Un clásico. No le gusta llamar la atención pero hace el trabajo perfectamente. Muy demure, muy mindful. ✨"
 
                 st.markdown(f"""
-                <div class="cute-box">
-                <h3 style="color:#ff2f92;">💖 {material['Material']}</h3>
-                <p><b>⚙️ Tratamiento / Treatment:</b> {material['Heat treatment']}</p>
-                <p><b>💪 Resistencia / Tensile Strength (Su):</b> {material['Su']} MPa</p>
-                <p><b>🌸 Elongación / Elongation (A5):</b> {material['A5']}%</p>
-                <p><b>🧁 Dureza / Hardness (Bhn):</b> {material['Bhn']} HB</p>
-                <p><b>💅 Chismecito técnico:</b> {chisme}</p>
+                <div class="retro-box">
+                <h3>📁 {material['Material']}</h3>
+                <p><b>Tratamiento Térmico:</b> {material['Heat treatment']}</p>
+                <ul>
+                    <li><b>Resistencia (Su):</b> {material['Su']} MPa</li>
+                    <li><b>Límite (Sy):</b> {material['Sy']} MPa</li>
+                    <li><b>Elongación:</b> {material['A5']}%</li>
+                    <li><b>Dureza:</b> {material['Bhn']} HB</li>
+                </ul>
                 </div>
                 """, unsafe_allow_html=True)
         else:
-            st.error("❌ No encontré nada bestie. Try another word! 😭")
+            st.error("❌ ERROR 404: Material no encontrado en la base de datos.")
 
 # =========================================================
-# TAB 3: MATERIAL GOSSIP (ESTILO BLOG)
+# TAB 3: TECH GOSSIP (NOTICIAS / ESCÁNDALOS)
 # =========================================================
 
 with tab3:
-    st.header("📰 MATERIAL GOSSIP")
-    st.write("¡Dale click a los titulares para leer el chisme completo!")
+    st.header("📰 TECH GOSSIP: El Foro de la Verdad")
+    st.write("Bienvenido al foro. Haz clic en los hilos para desplegar la información.")
 
-    with st.expander("💅 ¡ESCÁNDALO! El Acero Inoxidable y la Corrosión ya NO se hablan"):
+    # NOTICIA 1
+    with st.expander("🚨 EL ESCÁNDALO DE LA SEMANA: ¿Fraude en la Industria Aeronáutica?"):
+        # 📸 AQUI VA TU IMAGEN 1 - TAMAÑO: 600x400 px
+        st.image("https://via.placeholder.com/600x400.png?text=FOTO+ESCANDALO+1", caption="Foros de aviación arden tras la revelación.")
+        
         st.write("""
-        **XOXO, Gossip Girl.** Me enteré que el *Stainless Steel* bloqueó definitivamente a la Corrosión. 
-        Gracias a su capa pasiva de óxido de cromo (mínimo 10.5%, reina), el acero inoxidable literalmente se volvió intocable. 
-        La Corrosión intentó acercarse en un ambiente marino, pero fue totalmente ignorada. ¡Soporta! 💋
+        **Posteado por: CyberEngineer99 a las 03:42 AM**
+        
+        Se filtraron documentos que indican que varios proveedores están sustituyendo **Aleaciones de Titanio (Ti-6Al-4V)** por grados inferiores de aluminio modificados en ciertos componentes no críticos de turbinas. 
+        
+        El problema es que la fatiga térmica no perdona. Mientras que el titanio mantiene sus propiedades a más de 400°C sin inmutarse, el aluminio comienza a ablandarse peligrosamente. Ingenieros de mantenimiento han reportado deformaciones anómalas (creep) en inspecciones rutinarias. ¿Estamos priorizando reducir costos de peso sobre la seguridad? La comunidad de metalurgia está furiosa.
         """)
 
-    with st.expander("✨ El Aluminio humilla al Acero en la báscula"):
+    # NOTICIA 2
+    with st.expander("⚠️ ÚLTIMA HORA: El Acero Inoxidable Serie 300 pierde su corona"):
+        # 📸 AQUI VA TU IMAGEN 2 - TAMAÑO: 600x400 px
+        st.image("https://via.placeholder.com/600x400.png?text=FOTO+ESCANDALO+2", caption="Corrosión intergranular detectada.")
+        
         st.write("""
-        ¡Las comparaciones son odiosas! Pero el *Aluminum* no para de presumir que su densidad (2.7 g/cm³) es casi un tercio 
-        de la del Acero (7.8 g/cm³). Y aunque no es tan fuerte, el Aluminio dice que "la que es ligera, es ligera" y por eso 
-        la industria aeroespacial lo prefiere. ¿Será que el Acero está *cancelled* para volar? ✈️
+        **Posteado por: RustyMetal_XX a las 11:15 PM**
+        
+        Durante décadas nos vendieron que los aceros inoxidables austeníticos (como el famoso 304) eran invulnerables a la corrosión. Sin embargo, un nuevo reporte en ambientes marinos extremos ha dejado expuesta su gran debilidad: la corrosión por picaduras (pitting) debido a los iones de cloruro.
+        
+        Laboratorios independientes acaban de recomendar un cambio masivo hacia aceros Dúplex o Super Dúplex, que contienen mayor porcentaje de molibdeno y nitrógeno, haciéndolos verdaderos tanques blindados contra los cloruros. ¿Será este el fin de la era del 304 en la construcción costera?
         """)
 
-    with st.expander("⚡ El Cobre fue visto conduciendo altas corrientes a deshoras..."):
+    # NOTICIA 3
+    with st.expander("📉 CAÍDA EN LA BOLSA: La crisis del Cobre"):
+        # 📸 AQUI VA TU IMAGEN 3 - TAMAÑO: 600x400 px
+        st.image("https://via.placeholder.com/600x400.png?text=FOTO+ESCANDALO+3", caption="Mercados de materias primas en rojo.")
+        
         st.write("""
-        Fuentes cercanas confirman que el *Copper* sigue siendo el material más solicitado para conexiones eléctricas. 
-        Aunque la Plata es técnicamente mejor conductora, resulta que es demasiado *high maintenance* y costosa. 
-        Así que el Cobre se queda con el monopolio de los cables. ¡Mentalidad de tiburón! 🦈
-        """)
-
-    with st.expander("🧪 El Titanio: ¿Material exclusivo o simplemente sobrevalorado?"):
-        st.write("""
-        Todos sabemos que el *Titanium* es carísimo de procesar. Su biocompatibilidad lo hace el *sugar daddy* de 
-        los implantes médicos, pero muchos ingenieros se quejan de que es un dolor de cabeza maquinarlo. 
-        ¿Vale la pena su alto ratio resistencia-peso o solo lo usamos para presumir presupuesto? 💅💸
+        **Posteado por: WallSt_Alchemist a las 09:30 AM**
+        
+        El auge de los vehículos eléctricos ha puesto al mundo al borde del abismo respecto a las reservas de Cobre. Al ser el principal conductor utilizado para bobinas de motores y cableado interno, la demanda superó en un 15% la producción minera mundial este trimestre.
+        
+        Rumores apuntan a que los grandes fabricantes están invirtiendo millones en I+D para utilizar **Aluminio recubierto** o incluso metamateriales basados en grafeno para puentear esta crisis. Si el aluminio logra desplazar al cobre en el cableado de potencia automotriz, estaríamos frente a la revolución de materiales más grande de la década.
         """)
 
 # =========================================================
-# TAB 4: JUEGO (MÁS LARGO Y DIVERTIDO)
+# TAB 4: JUEGO / ARCADE QUIZ
 # =========================================================
 
 with tab4:
-    st.header("🎮 Y2K MATERIAL POP QUIZ")
+    st.header("🕹️ ARCADE: TEST DE CONOCIMIENTO")
     
+    st.markdown("""
+    <div class="retro-box">
+    Demuestra tus conocimientos técnicos. Fallar bajará tu rango en el foro.
+    </div>
+    """, unsafe_allow_html=True)
+
     preguntas = [
         {
-            "pregunta": "✨ ¿Qué material es famoso por ser súper ligero y tener pase VIP en la industria aeroespacial?",
-            "opciones": ["Titanio", "Aluminio", "Plomo"],
-            "correcta": "Aluminio",
-            "dato": "💖 ¡Slay! El aluminio es súper ligero (densidad baja) y por eso los aviones lo aman."
+            "pregunta": "[PREGUNTA 1]: En un tratamiento de Temple (Quenching) de acero, ¿qué estructura cristalina hiperdura se busca formar?",
+            "opciones": ["Austenita", "Martensita", "Perlita", "Cementita"],
+            "correcta": "Martensita",
+            "dato": "CORRECTO. El enfriamiento rápido atrapa el carbono en una estructura tetragonal centrada en el cuerpo, generando Martensita, la fase más dura."
         },
         {
-            "pregunta": "⚡ Si tienes que hacer una instalación eléctrica y no eres millonaria para usar plata, ¿a quién llamas?",
-            "opciones": ["Cobre", "Acero", "Madera"],
-            "correcta": "Cobre",
-            "dato": "⚡ ¡Obvio! El cobre es el bestie indiscutible de la conductividad eléctrica y el presupuesto."
+            "pregunta": "[PREGUNTA 2]: ¿Cuál es el límite termodinámico (aprox.) de temperatura de fusión del Tungsteno (Wolframio)?",
+            "opciones": ["1,500 °C", "2,800 °C", "3,422 °C", "5,000 °C"],
+            "correcta": "3,422 °C",
+            "dato": "CORRECTO. El tungsteno tiene el punto de fusión más alto de todos los metales puros, ideal para filamentos incandescentes y toberas espaciales."
         },
         {
-            "pregunta": "💎 ¿Cuál es el material con la 'red flag' de ser súper pesado y hasta tóxico, al punto que lo cancelaron de las pinturas y gasolinas?",
-            "opciones": ["Plomo", "Estaño", "Zinc"],
-            "correcta": "Plomo",
-            "dato": "☠️ ¡Canceladísimo! El plomo es densísimo y tóxico. Cero aesthetic hoy en día."
-        },
-        {
-            "pregunta": "💅 ¿Qué material tiene un 'glow up' térmico al agregarle carbono, pasando de hierro aburrido a una estructura súper resistente?",
-            "opciones": ["Acero", "Bronce", "Latón"],
-            "correcta": "Acero",
-            "dato": "🔥 ¡Yass! El hierro + carbono = Acero. El verdadero glow up de la metalurgia."
-        },
-        {
-            "pregunta": "🛡️ ¿Cuál es la propiedad mecánica que mide si un material es 'flexible' y aguanta estirarse sin romperse (como tus excusas)?",
-            "opciones": ["Dureza", "Elongación / Ductilidad", "Fatiga"],
-            "correcta": "Elongación / Ductilidad",
-            "dato": "🧘‍♀️ Correcto. Los metales dúctiles se pueden deformar plásticamente antes de fracturarse. ¡Aesthetic y funcional!"
+            "pregunta": "[PREGUNTA 3]: El proceso de recocido (Annealing) tiene como principal objetivo mecánico...",
+            "opciones": ["Aumentar la dureza superficial", "Eliminar tensiones residuales y ablandar el material", "Proteger contra la oxidación"],
+            "correcta": "Eliminar tensiones residuales y ablandar el material",
+            "dato": "CORRECTO. El recocido regenera los granos del metal, aumentando su ductilidad y facilitando su mecanizado."
         }
     ]
 
-    # Estado para la pregunta actual
     if 'pregunta_actual' not in st.session_state:
         st.session_state.pregunta_actual = random.choice(preguntas)
 
     p = st.session_state.pregunta_actual
 
-    st.markdown(f"""
-    <div class="cute-box">
-    <h3 style="color:#ff2f92;">{p['pregunta']}</h3>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"### {p['pregunta']}")
 
-    respuesta = st.radio("💖 Selecciona la respuesta correcta:", p["opciones"])
+    respuesta = st.radio("SELECCIONE UNA OPCIÓN:", p["opciones"])
 
     colA, colB = st.columns(2)
     
     with colA:
-        if st.button("✨ Revisar respuesta ✨"):
+        if st.button("ENVIAR RESPUESTA [ENTER]"):
             if respuesta == p["correcta"]:
-                st.balloons()
-                st.success(f"🌸 ¡CORRECTO REINA! 🌸\n\n{p['dato']}")
+                st.success(f"✅ ACCESO CONCEDIDO.\n\n{p['dato']}")
             else:
-                st.error(f"❌ ¡No bestie, te equivocaste!\n\nLa respuesta era: {p['correcta']}")
+                st.error(f"❌ FALLO CRÍTICO.\n\nLa respuesta correcta es: {p['correcta']}")
     
     with colB:
-        if st.button("🔄 Siguiente pregunta"):
+        if st.button("CARGAR SIGUIENTE ARCHIVO >>"):
             st.session_state.pregunta_actual = random.choice(preguntas)
             st.rerun()

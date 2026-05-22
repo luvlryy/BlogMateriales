@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~* Materiales Vlog *~</title>
+
+<style>
+/* ---------------- FONDO ---------------- */
+body{
+    background-color:#ffeef8;
+    background-image:
+    radial-gradient(#ffffff 1.5px, transparent 1.5px),
+    radial-gradient(#ffd6f2 1.5px, transparent 1.5px);
+    background-size:30px 30px;
+    background-position:0 0, 15px 15px;
+    color:#555;
+    font-family:'Trebuchet MS', sans-serif;
+    margin:0;
+    padding:20px;
+}
+
+/* ---------------- WRAPPER ---------------- */
+.wrapper{
+    width:920px;
+    margin:auto;
+    background:#fffafd;
+    border:4px solid #ffb6da;
+    border-radius:20px;
+    padding:20px;
+    box-shadow: 0 0 25px #ffc7eb;
+    animation:fadeIn 1s;
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0px); }
+}
+
+/* ---------------- HEADER ---------------- */
+.header{
+    text-align:center;
+    border-bottom:3px dashed #b4dfff;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.header h1{
+    font-family:'Comic Sans MS';
+    font-size:52px;
+    color:#ff5cb8;
+    margin:0;
+    text-shadow: 2px 2px white, 0 0 10px #ffd0ef;
+}
+
+.marquee{
+    margin-top:10px;
+    background:#fff;
+    padding:8px;
+    border-radius:15px;
+    color:#7dbdff;
+    font-weight:bold;
+    border:2px dashed #bfe4ff;
+}
+
+.blink-text {
+    animation: blinker 1s linear infinite;
+    color: #ff5cb8;
+    font-weight: bold;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+/* ---------------- LAYOUT ---------------- */
+.layout{
+    display:flex;
+    gap:20px;
+}
+
+.sidebar{
+    width:250px;
+}
+
+.content{
+    flex:1;
+    background:#fffef9;
+    border:2px solid #e8d9ff;
+    border-radius:15px;
+    padding:20px;
+}
+
+/* ---------------- MODULOS ---------------- */
+.module{
+    background:white;
+    border:2px dashed #ffb6da;
+    border-radius:15px;
+    padding:12px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px #ffe2f4;
+}
+
+.module h3{
+    background:#ff9fd3;
+    color:white;
+    margin:-12px -12px 12px -12px;
+    padding:10px;
+    border-radius:12px 12px 0 0;
+    text-align:center;
+    font-family:'Comic Sans MS';
+}
+
+.nav-btn{
+    background:#f0e3ff;
+    padding:10px;
+    border-radius:15px;
+    text-align:center;
+    margin-bottom:8px;
+    transition:0.3s;
+    font-weight:bold;
+    border: 1px dashed #d1b3ff;
+    cursor: pointer;
+}
+
+.nav-btn:hover{
+    background:#ff9fd3;
+    color:white;
+    transform:scale(1.03);
+}
+
+/* ---------------- SECCIONES ---------------- */
+.section{ display:none; }
+.section.active{ display:block; }
+
+/* ---------------- POSTS ---------------- */
+.post{
+    background:white;
+    border:2px solid #ffd6ef;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:20px;
+    transition:0.3s;
+}
+
+.post:hover{
+    transform:scale(1.01);
+    box-shadow:0 0 20px #ffd2eb;
+}
+
+.post-title{
+    color:#ff5cb8;
+    font-family:'Comic Sans MS';
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+.post-date{
+    color:#7dbdff;
+    font-size:12px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.post-img{
+    width:100%;
+    border-radius:12px;
+    border:3px solid #f1ddff;
+    margin-bottom:10px;
+}
+
+.mood{
+    background:#fff0f8;
+    border:1px dashed #ffb6da;
+    padding:10px;
+    border-radius:10px;
+    font-size:12px;
+    font-style: italic;
+}
+
+/* ---------------- INPUTS ---------------- */
+.search-box, textarea{
+    width:95%;
+    padding:10px;
+    border-radius:12px;
+    border:2px solid #bfe4ff;
+    margin-bottom:10px;
+    font-family:'Trebuchet MS';
+    background:#fff;
+    box-sizing: border-box;
+}
+
+textarea{ resize:none; }
+
+.btn-action{
+    background:#ff8ecf;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:15px;
+    font-weight:bold;
+    font-size:15px;
+    transition:0.2s;
+    display:inline-block;
+    box-shadow: 2px 2px 0px #ffb6da;
+    cursor: pointer;
+}
+
+.btn-action:hover{
+    background:#ff5cb8;
+    transform:translateY(2px);
+    box-shadow: 0px 0px 0px #ffb6da;
+}
+
+/* ---------------- RESULTADOS ---------------- */
+.result-item{
+    background:white;
+    border:1px dashed #bfe4ff;
+    padding:10px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.result-item h4{ color:#ff5cb8; margin: 0 0 5px 0;}
+
+/* ---------------- SLIDERS ---------------- */
+.slider-box{
+    background:white;
+    border:1px solid #ffd6ef;
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:15px;
+}
+
+.slider-box label{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+}
+
+input[type=range]{ width:100%; accent-color:#ff5cb8; }
+
+/* ---------------- YOUTUBE ---------------- */
+.video-box{
+    background:white;
+    border:2px dashed #bfe4ff;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:20px;
+}
+iframe{ border-radius:15px; }
+
+/* ---------------- DRAG FOTO ---------------- */
+.profile-drop{
+    border:3px dashed #ff9fd3;
+    border-radius:20px;
+    padding:10px;
+    text-align:center;
+    transition:0.3s;
+    background:#fff7fc;
+    margin-bottom: 10px;
+}
+
+.profile-drop.dragover{
+    background:#ffe3f4;
+    transform:scale(1.02);
+}
+
+/* ---------------- SCROLL ---------------- */
+body::-webkit-scrollbar{ width:10px; }
+body::-webkit-scrollbar-thumb{ background:#ff9fd3; border-radius:10px; }
+body::-webkit-scrollbar-track{ background:#fff0f8; }
+
+/* ---------------- MISC 2006 ---------------- */
+.counter {
+    font-family: 'Courier New', monospace;
+    background: black;
+    color: #00ff00;
+    padding: 5px 10px;
+    font-size: 24px;
+    letter-spacing: 4px;
+    border-radius: 5px;
+    display: inline-block;
+    border: 2px inset #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+    <h1 id="main-title">~* Materiales Vlog *~</h1>
+    <marquee class="marquee">
+        ✨ Bienvenid@ al laboratorio más aesthetic de internet ✨ <span class="blink-text">¡NUEVO POST ABAJO!</span> ✨
+    </marquee>
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+
+    <div class="module">
+        <h3>🌸 About Me 🌸</h3>
+        <div class="profile-drop" id="drop-zone-profile">
+            <img id="profile-pic" src="https://i.pinimg.com/736x/90/6c/8e/906c8e09b9a90c859f6fd16e6fdbd2e0.jpg" style="width:100%; border-radius:15px; border:3px solid #ffb6da; margin-bottom:10px;">
+            <p style="font-size:12px; margin:0;">Arrastra una foto aquí 💖</p>
+        </div>
+
+        <label for="upload-photo" class="btn-action" style="width:90%; display:block; text-align:center; background:#87cefa; box-sizing:border-box;">
+            Subir Foto 🖼️
+        </label>
+        <input type="file" id="upload-photo" accept="image/*" style="display:none;" onchange="cambiarFoto(event)">
+
+        <div style="line-height:1.8; margin-top:15px; font-size:14px;">
+            <b>Usuario:</b> <span id="p-name">Ing_Grl99</span><br>
+            <b>Ubicación:</b> <span id="p-loc">Laboratorio ✨</span><br>
+            <b>Mood:</b> <span id="p-mood">Aesthetic 💖</span>
+        </div>
+        <button class="btn-action" style="margin-top:10px;width:100%; box-sizing:border-box;" onclick="editarPerfil()">
+            Editar Perfil ✏️
+        </button>
+    </div>
+
+    <div class="module">
+        <h3>🎵 Reproductor 🎵</h3>
+        <div style="background: black; padding: 5px; border-radius: 10px; border: 2px solid #a855f7;">
+            <marquee direction="left" scrollamount="3" style="color: #00ff00; font-family:'Courier New', monospace; font-size:12px;">
+                ▶ NOW PLAYING: Taylor Swift - Teardrops on My Guitar (2006) 🎸 🧪
+            </marquee>
+        </div>
+        <div style="display:flex; justify-content:center; gap:5px; margin-top:10px;">
+            <button class="nav-btn" style="padding:5px 15px; margin:0;">⏮</button>
+            <button class="nav-btn" style="padding:5px 15px; margin:0;">▶</button>
+            <button class="nav-btn" style="padding:5px 15px; margin:0;">⏭</button>
+        </div>
+    </div>
+
+    <div class="module">
+        <h3>✨ Secciones ✨</h3>
+        <div class="nav-btn" onclick="showSection('blog')">🌸 Publicaciones</div>
+        <div class="nav-btn" onclick="showSection('videos')">📺 Videos</div>
+        <div class="nav-btn" onclick="showSection('search')">🔍 Base de Datos</div>
+        <div class="nav-btn" onclick="showSection('matchmaker')">💖 Match Materiales</div>
+        <div class="nav-btn" onclick="showSection('quiz')">🎮 Pop Quiz</div>
+    </div>
+
+    <div class="module" style="text-align: center;">
+        <h3>👀 Visitas 👀</h3>
+        <div class="counter">01337</div>
+        <p style="font-size: 10px; color: #aaa; margin-top: 5px;">Desde el 2006</p>
+    </div>
+
+</div>
+
+<div class="content">
+
+<div id="blog" class="section active">
+    <h2 style="color:#ff5cb8; font-family: 'Comic Sans MS';">🌸 Últimos Chismecitos del Laboratorio 🌸</h2>
+
+    <div class="post" style="background: #fffafa;">
+        <h3 class="post-title" style="font-size:20px;">✨ Crear Publicación ✨</h3>
+        
+        <input type="text" id="newTitle" class="search-box" placeholder="Título dramático...">
+        <textarea id="newContent" placeholder="¿Qué pasó hoy en el laboratorio? ☕" style="height:100px;"></textarea>
+        
+        <div class="profile-drop" id="drop-zone-post">
+            <p style="font-size:13px; margin:5px;">🖼️ Arrastra una imagen para tu chismecito aquí 🖼️</p>
+            <img id="post-preview" style="display:none; width:100%; border-radius:12px; border:2px solid #ffb6da; margin-top:10px;">
+        </div>
+        
+        <p style="text-align: center; font-size: 12px; margin: 5px 0;">O pega un link de internet:</p>
+        <input type="text" id="newImage" class="search-box" placeholder="Link de imagen aesthetic ✨">
+
+        <button class="btn-action" style="width: 100%;" onclick="crearPost()">Publicar 💖</button>
+    </div>
+
+    <div id="dynamicPosts"></div>
+</div>
+
+<div id="videos" class="section">
+    <h2 style="color:#87cefa; font-family: 'Comic Sans MS';">📺 Videos del Laboratorio</h2>
+    <div class="video-box">
+        <h3 style="color:#ff5cb8; font-family: 'Comic Sans MS'; margin-top:0;">Agregar Video 💖</h3>
+        <input type="text" id="youtubeLink" class="search-box" placeholder="Pega link YouTube">
+        <button class="btn-action" onclick="agregarVideo()">Agregar Video ✨</button>
+        <div id="videosDinamicos" style="margin-top: 15px;"></div>
+    </div>
+</div>
+
+<div id="search" class="section">
+    <h2 style="color:#87cefa; font-family: 'Comic Sans MS';">🔍 Base de Datos de Materiales</h2>
+    <input type="text" id="searchInput" class="search-box" placeholder="Buscar material..." onkeyup="buscarBackend()">
+    <div id="searchResults"></div>
+</div>
+
+<div id="matchmaker" class="section">
+    <h2 style="color:#ff5cb8; font-family: 'Comic Sans MS';">💖 Encuentra tu Material Ideal</h2>
+    
+    <div class="slider-box">
+        <label>Resistencia Última (Su) <span id="valSu">500</span></label>
+        <input type="range" id="su" min="100" max="2500" value="500" oninput="updateVal('su','valSu')">
+    </div>
+    <div class="slider-box">
+        <label>Límite Elástico (Sy) <span id="valSy">400</span></label>
+        <input type="range" id="sy" min="50" max="2000" value="400" oninput="updateVal('sy','valSy')">
+    </div>
+    <div class="slider-box">
+        <label>Elongación (%) <span id="valA5">15</span></label>
+        <input type="range" id="a5" min="1" max="60" value="15" oninput="updateVal('a5','valA5')">
+    </div>
+    <div class="slider-box">
+        <label>Dureza Brinell (BHN) <span id="valBhn">200</span></label>
+        <input type="range" id="bhn" min="50" max="700" value="200" oninput="updateVal('bhn','valBhn')">
+    </div>
+    <div class="slider-box">
+        <label>Módulo de Young (E) <span id="valE">200000</span></label>
+        <input type="range" id="e" min="40000" max="250000" value="200000" oninput="updateVal('e','valE')">
+    </div>
+    <div class="slider-box">
+        <label>Módulo Cortante (G) <span id="valG">80000</span></label>
+        <input type="range" id="g" min="15000" max="100000" value="80000" oninput="updateVal('g','valG')">
+    </div>
+
+    <button class="btn-action" onclick="calcularMatch()">Buscar Match 💖</button>
+    <div id="matchResults" style="margin-top:20px;"></div>
+</div>
+
+<div id="quiz" class="section">
+    <h2 style="color:#a855f7; font-family: 'Comic Sans MS';">🎮 Pop Quiz</h2>
+    <div id="quiz-content" class="module"></div>
+    <div id="quiz-feedback" style="margin-top:15px; font-weight:bold; font-size: 18px; text-align: center;"></div>
+    <button class="btn-action" style="width: 100%; margin-top: 10px;" onclick="cargarPregunta()">Otra Pregunta ✨</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+/* SECCIONES */
+function showSection(sectionId){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+}
+
+/* PERFIL */
+function editarPerfil(){
+    let nombre = prompt("Nuevo usuario:");
+    let mood = prompt("Nuevo mood:");
+    if(nombre){
+        document.getElementById("p-name").innerText = nombre;
+        document.getElementById("main-title").innerText = "~* " + nombre + "'s Vlog *~";
+    }
+    if(mood){
+        document.getElementById("p-mood").innerText = mood;
+    }
+}
+
+/* DRAG & DROP - FOTO DE PERFIL */
+function cambiarFoto(event){
+    const archivo = event.target.files[0];
+    if(!archivo) return;
+    const lector = new FileReader();
+    lector.onload = function(e){
+        document.getElementById("profile-pic").src = e.target.result;
+    };
+    lector.readAsDataURL(archivo);
+}
+
+const dropZoneProfile = document.getElementById("drop-zone-profile");
+
+dropZoneProfile.addEventListener("dragover", (e)=>{
+    e.preventDefault();
+    dropZoneProfile.classList.add("dragover");
+});
+
+dropZoneProfile.addEventListener("dragleave", ()=>{
+    dropZoneProfile.classList.remove("dragover");
+});
+
+dropZoneProfile.addEventListener("drop", (e)=>{
+    e.preventDefault();
+    dropZoneProfile.classList.remove("dragover");
+    const archivo = e.dataTransfer.files[0];
+    if(!archivo) return;
+    const lector = new FileReader();
+    lector.onload = function(ev){
+        document.getElementById("profile-pic").src = ev.target.result;
+    };
+    lector.readAsDataURL(archivo);
+});
+
+/* DRAG & DROP - NUEVO POST */
+const dropZonePost = document.getElementById("drop-zone-post");
+const postPreview = document.getElementById("post-preview");
+let postImageBase64 = "";
+
+dropZonePost.addEventListener("dragover", (e)=>{
+    e.preventDefault();
+    dropZonePost.classList.add("dragover");
+});
+
+dropZonePost.addEventListener("dragleave", ()=>{
+    dropZonePost.classList.remove("dragover");
+});
+
+dropZonePost.addEventListener("drop", (e)=>{
+    e.preventDefault();
+    dropZonePost.classList.remove("dragover");
+    const archivo = e.dataTransfer.files[0];
+    if(!archivo) return;
+    const lector = new FileReader();
+    lector.onload = function(ev){
+        postImageBase64 = ev.target.result;
+        postPreview.src = postImageBase64;
+        postPreview.style.display = "block";
+    };
+    lector.readAsDataURL(archivo);
+});
+
+/* CARGAR POSTS DESDE EL BACKEND */
+function cargarPosts(){
+    fetch("/get_posts")
+    .then(res => res.json())
+    .then(posts => {
+        let container = document.getElementById("dynamicPosts");
+        container.innerHTML = "";
+        posts.forEach(post => {
+            container.innerHTML += `
+            <div class="post">
+                <h3 class="post-title">${post.title}</h3>
+                <div class="post-date">${post.date}</div>
+                ${post.image ? `<img src="${post.image}" class="post-img">` : ""}
+                <p>${post.content}</p>
+                <div class="mood">💖 Mood: ${post.mood}</div>
+            </div>
+            `;
+        });
+    });
+}
+
+/* CREAR POST ENVIANDO AL BACKEND */
+function crearPost(){
+    let titulo = document.getElementById("newTitle").value;
+    let contenido = document.getElementById("newContent").value;
+    let imagenLink = document.getElementById("newImage").value;
+    let imagenFinal = postImageBase64 || imagenLink;
+
+    if(!titulo || !contenido){
+        alert("Completa todo el chismecito 😭");
+        return;
+    }
+
+    let data = {
+        title: titulo,
+        date: new Date().toLocaleDateString(),
+        content: contenido,
+        mood: document.getElementById("p-mood").innerText,
+        image: imagenFinal
+    };
+
+    fetch("/add_post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(resData => {
+        if(resData.status === "success") {
+            cargarPosts(); // Recarga la lista desde memoria Python
+            // Limpiar formulario
+            document.getElementById("newTitle").value="";
+            document.getElementById("newContent").value="";
+            document.getElementById("newImage").value="";
+            postImageBase64 = "";
+            postPreview.style.display = "none";
+            postPreview.src = "";
+        }
+    });
+}
+
+/* VIDEOS */
+function agregarVideo(){
+    let link = document.getElementById("youtubeLink").value;
+    if(!link){
+        alert("Pega un link 😭");
+        return;
+    }
+    let videoID = "";
+    if(link.includes("watch?v=")){
+        videoID = link.split("watch?v=")[1];
+    } else if(link.includes("youtu.be/")){
+        videoID = link.split("youtu.be/")[1];
+    }
+    let html = `
+    <div class="video-box" style="margin-top:10px;">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoID}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    `;
+    document.getElementById("videosDinamicos").innerHTML += html;
+    document.getElementById("youtubeLink").value = "";
+}
+
+/* SLIDERS */
+function updateVal(sliderId, textId){
+    document.getElementById(textId).innerText = document.getElementById(sliderId).value;
+}
+
+/* MATCHMAKER CONECTADO AL BACKEND */
+function calcularMatch(){
+    let datos = {
+        su: document.getElementById("su").value,
+        sy: document.getElementById("sy").value,
+        a5: document.getElementById("a5").value,
+        bhn: document.getElementById("bhn").value,
+        e: document.getElementById("e").value,
+        g: document.getElementById("g").value
+    };
+
+    fetch("/match", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+    })
+    .then(res => res.json())
+    .then(data => {
+        let div = document.getElementById("matchResults");
+        div.innerHTML = "";
+        
+        if(data.length === 0) {
+            div.innerHTML = "<p>No se encontraron datos 😭</p>";
+            return;
+        }
+
+        data.forEach(mat => {
+            // Nota: Se usan llaves dinámicas por si las columnas en tu Excel empiezan con mayúscula
+            let nombreMaterial = mat.Material || mat.material || "Material Desconocido";
+            div.innerHTML += `
+                <div class="result-item">
+                    <h4>${nombreMaterial}</h4>
+                    <p>💖 Compatibilidad IA: <b>${mat.Compatibilidad}%</b></p>
+                    <p style="font-size:12px; color:#777;">Propiedades - Su: ${mat.Su || 'N/A'} | Sy: ${mat.Sy || 'N/A'}</p>
+                </div>
+            `;
+        });
+    });
+}
+
+/* BUSCADOR REAL CONECTADO AL BACKEND */
+function buscarBackend(){
+    let query = document.getElementById("searchInput").value;
+    if(query.trim() === "") {
+        document.getElementById("searchResults").innerHTML = "";
+        return;
+    }
+
+    fetch("/buscar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: query })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let div = document.getElementById("searchResults");
+        div.innerHTML = "";
+
+        if(data.length === 0){
+            div.innerHTML = "<p style='font-size:12px;'>No se encontraron materiales con ese criterio 😭</p>";
+            return;
+        }
+
+        data.forEach(mat => {
+            let nombreMaterial = mat.Material || mat.material || "Sin nombre";
+            let tratamiento = mat['Heat treatment'] || mat['Tratamiento'] || "N/A";
+            let suVal = mat.Su || mat.su || "N/A";
+            
+            div.innerHTML += `
+                <div class="result-item">
+                    <h4>✨ ${nombreMaterial}</h4>
+                    <p><b>Tratamiento:</b> ${tratamiento}</p>
+                    <p><b>Resistencia Última (Su):</b> ${suVal}</p>
+                </div>
+            `;
+        });
+    });
+}
+
+/* QUIZ */
+const preguntas = [
+    { q:"¿Qué elemento hace inoxidable al acero?", o:["Carbono","Cromo","Titanio"], c:"Cromo" },
+    { q:"¿Qué metal conduce mejor la electricidad?", o:["Cobre","Plomo","Hierro"], c:"Cobre" },
+    { q:"¿Qué material es conocido por su memoria de forma?", o:["Nitinol","Latón","Aluminio"], c:"Nitinol" }
+];
+
+let actual = {};
+
+function cargarPregunta(){
+    actual = preguntas[Math.floor(Math.random()*preguntas.length)];
+    let html = `<h3 style="margin-top:0; color:#555;">${actual.q}</h3>`;
+    actual.o.forEach(op=>{
+        html += `
+        <button class="btn-action" style="margin-bottom:10px; width:100%;" onclick="verificar('${op}')">
+            ${op}
+        </button>
+        `;
+    });
+    document.getElementById("quiz-content").innerHTML = html;
+    document.getElementById("quiz-feedback").innerHTML = "";
+}
+
+function verificar(r){
+    let div = document.getElementById("quiz-feedback");
+    if(r===actual.c){
+        div.innerHTML = "<span class='blink-text'>✨ CORRECTO ✨</span>";
+    }else{
+        div.innerHTML = "😭 Incorrecto. ¡Sigue estudiando!";
+        div.style.color = "#ff5cb8";
+    }
+}
+
+// Cargar posts iniciales al iniciar la página
+window.onload = function() {
+    cargarPosts();
+    cargarPregunta();
+};
+</script>
+</body>
+</html>

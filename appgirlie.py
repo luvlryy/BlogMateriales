@@ -1,6 +1,6 @@
 # =========================================================
-# ✨ MATERIAL CHANNEL - 2004 EDITION ✨
-# La página más cool del internet 💖
+# 💋 MATERIAL GIRL BLOG - UPPER EAST SIDE EDITION 
+# Estética Gossip Girl 2007 - Chic, Minimalista y Escandalosa
 # =========================================================
 
 import streamlit as st
@@ -17,8 +17,8 @@ from sklearn.metrics.pairwise import euclidean_distances
 # =========================================================
 
 st.set_page_config(
-    page_title="Material Channel 🌟",
-    page_icon="📺",
+    page_title="Material Girl Blog",
+    page_icon="💋",
     layout="wide"
 )
 
@@ -35,221 +35,203 @@ def load_data():
 try:
     df = load_data()
 except Exception as e:
-    st.error(f"¡Ups! Ocurrió un error al cargar los datos: {e}")
+    st.error(f"XOXO, tuvimos un problema cargando los secretos: {e}")
     st.stop()
 
 columnas_numericas = ["Su", "Sy", "A5", "Bhn", "E", "G"]
-
 for col in columnas_numericas:
     df[col] = pd.to_numeric(df[col], errors="coerce")
-
 df = df.dropna(subset=columnas_numericas)
 
 # =========================================================
-# CSS DISNEY CHANNEL 2000s VIBES 📺🌸
+# CSS GOSSIP GIRL ESTHETIC 💋🎩 (HTML INYECTADO)
 # =========================================================
 
 st.markdown("""
 <style>
-/* Fuentes divertidas: Chewy para títulos, Nunito para texto */
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;700&family=Comic+Neue:wght@700&display=swap');
+/* Importar tipografías elegantes (Playfair para títulos, Lora para texto, y Great Vibes para la firma) */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 html, body, [class*="css"] {
-    font-family: 'Nunito', sans-serif;
-    color: #4a4a4a;
+    font-family: 'Lora', serif;
+    color: #1a1a1a;
+    background-color: #fcfcfc;
 }
 
-/* FONDO AZUL CIELO CON BURBUJAS/PUNTITOS */
+/* FONDO CHIC MINIMALISTA */
 .stApp {
-    background-color: #87CEFA; /* Azul cielo súper Disney */
-    background-image: radial-gradient(#FFF 15%, transparent 16%), radial-gradient(#FFF 15%, transparent 16%);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
+    background-color: #fcfcfc;
 }
 
-/* BARRA LATERAL MAGENTA */
+/* BARRA LATERAL ELEGANTE */
 section[data-testid="stSidebar"] {
-    background-color: #FF69B4;
-    border-right: 8px dashed #FFF;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
 }
 section[data-testid="stSidebar"] * {
-    color: white !important;
-    font-family: 'Comic Neue', cursive;
+    font-family: 'Lora', serif;
 }
 
-/* TÍTULO PRINCIPAL (LOGO) */
-h1 {
-    font-family: 'Chewy', cursive;
-    color: #FFD700 !important; /* Amarillo brillante */
+/* TÍTULO PRINCIPAL GOSSIP GIRL */
+.gg-header {
     text-align: center;
-    font-size: 80px !important;
-    text-shadow: 4px 4px 0px #FF1493, 8px 8px 0px #FFFFFF; /* Sombra doble 3D */
-    margin-bottom: 20px;
-    letter-spacing: 3px;
-    -webkit-text-stroke: 2px #FF1493;
-}
-
-/* SUBTÍTULOS GLOBALES */
-h2, h3 {
-    font-family: 'Chewy', cursive;
-    color: #FF1493 !important;
-    text-shadow: 2px 2px 0px #FFF;
-    letter-spacing: 1px;
-}
-
-/* CAJAS ESTILO DISNEY (REDONDEADAS Y COLORIDAS) */
-.disney-box {
-    background-color: #FFFFFF;
-    border: 6px solid #32CD32; /* Verde Lima */
-    border-radius: 40px; /* Súper redondas */
-    padding: 30px;
+    border-bottom: 2px solid #1a1a1a;
+    border-top: 2px solid #1a1a1a;
+    padding: 20px 0;
     margin-bottom: 30px;
-    box-shadow: 8px 8px 0px #FF69B4; /* Sombra rosa sólida */
+}
+.gg-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 65px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #1a1a1a;
+    margin: 0;
+}
+.gg-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: #8b0000; /* Rojo Borgoña */
+    font-size: 20px;
+    margin: 10px 0 0 0;
 }
 
-.disney-box-blue {
-    background-color: #E0FFFF;
-    border: 6px dashed #FF69B4;
-    border-radius: 30px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* TABS (PESTAÑAS ESTILO CARPETAS ESCOLARES) */
+/* TABS: ESTILO NAVEGACIÓN DE REVISTA */
 .stTabs [data-baseweb="tab"] {
-    font-family: 'Chewy', cursive;
-    background-color: #FFB6C1;
-    border: 4px solid #FFF;
-    border-radius: 25px 25px 0 0;
-    margin-right: 5px;
-    padding: 15px 25px;
-    font-size: 22px;
-    color: #FFF !important;
-    text-shadow: 2px 2px #FF1493;
+    font-family: 'Playfair Display', serif;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #7a7a7a !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .stTabs [aria-selected="true"] {
-    background-color: #32CD32 !important; /* Verde lima al seleccionar */
-    border-bottom: 4px solid #32CD32;
+    color: #1a1a1a !important;
+    border-bottom: 2px solid #8b0000 !important;
+    font-weight: bold;
 }
 
-/* BOTONES GORDITOS DE GOMITA */
+/* ENTRADAS DE BLOG (EL CHISME) */
+.post-container {
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.03);
+}
+.post-date {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: #8b0000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+.post-body {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333333;
+}
+.spotted {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+}
+.xoxo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 35px;
+    color: #8b0000;
+    margin-top: 20px;
+    display: block;
+}
+
+/* BOTONES ELEGANTE */
 .stButton>button {
-    background-color: #FFD700;
-    color: #FF1493 !important;
-    font-family: 'Chewy', cursive;
-    font-size: 24px !important;
-    border: 4px solid #FFF;
-    border-radius: 50px;
+    background-color: #1a1a1a;
+    color: #ffffff !important;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
     padding: 10px 20px;
-    box-shadow: 0px 6px 0px #FF69B4;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 .stButton>button:hover {
-    transform: translateY(3px);
-    box-shadow: 0px 3px 0px #FF69B4;
+    background-color: #8b0000;
+    color: #ffffff !important;
 }
 
-/* ENTRADA DE BLOG (DIARIO) */
-.blog-entry {
-    background-color: #FFFACD; /* Amarillo pastel */
-    border: 5px solid #9370DB; /* Morado */
-    border-radius: 30px;
-    padding: 25px;
-    margin-bottom: 40px;
-    position: relative;
-    box-shadow: 10px 10px 0px rgba(147, 112, 219, 0.4);
+/* INPUTS DE BÚSQUEDA */
+.stTextInput input {
+    font-family: 'Lora', serif;
+    border: none !important;
+    border-bottom: 1px solid #1a1a1a !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    font-size: 20px;
 }
-.blog-date {
-    background-color: #FF1493;
-    color: white;
-    font-family: 'Comic Neue', cursive;
-    font-weight: bold;
-    padding: 5px 15px;
-    border-radius: 20px;
-    position: absolute;
-    top: -15px;
-    left: 20px;
-    border: 3px solid #FFF;
-}
-.blog-title {
-    font-family: 'Chewy', cursive;
-    color: #32CD32;
-    font-size: 28px;
-    margin-top: 10px;
-    border-bottom: 3px dashed #FF69B4;
-    padding-bottom: 10px;
-}
-
-/* TARJETA DEL QUIZ */
-.quiz-card {
-    background: linear-gradient(135deg, #FF69B4, #9370DB);
-    border: 6px solid #FFF;
-    border-radius: 40px;
-    padding: 40px;
-    color: #FFF;
-    text-align: center;
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-}
-.quiz-question {
-    font-family: 'Chewy', cursive;
-    font-size: 35px;
-    text-shadow: 2px 2px 0px #FF1493;
+.stTextInput input:focus {
+    box-shadow: none !important;
+    border-bottom: 2px solid #8b0000 !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # =========================================================
-# HEADER
+# HEADER GOSSIP GIRL
 # =========================================================
 
-st.title("🌟 MATERIAL CHANNEL 🌟")
-
 st.markdown("""
-<div class="disney-box">
-<h2 style="text-align:center;">¡Estás viendo Material Channel! 📺✨</h2>
-<p style="text-align:center; font-size:20px; font-family:'Comic Neue', cursive;">
-La red más cool para buscar aleaciones, descubrir los secretos de los metales y divertirte al máximo. ¡Agarra tus palomitas y explora! 🍿💖
-</p>
+<div class="gg-header">
+    <h1 class="gg-title">Material Girl</h1>
+    <p class="gg-subtitle">Tu única y mejor fuente sobre las escandalosas vidas de los metales.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# BANNER - ESPACIO PARA FOTO DISNEY (1200x300)
-st.image("https://via.placeholder.com/1200x300/FF69B4/FFFFFF?text=FOTO+DEL+REPARTO+AQUI+💖", use_container_width=True)
+# LÍNEA 168 - FOTO PANORÁMICA DE MANHATTAN / HIGH FASHION (1200x400)
+st.image("https://via.placeholder.com/1200x400/1a1a1a/ffffff?text=FOTO+ELEGANTE+DEL+UPPER+EAST+SIDE+AQUI", use_container_width=True)
 
 # =========================================================
-# TABS
+# TABS (REVISTA)
 # =========================================================
 
 tab1, tab2, tab3, tab4 = st.tabs([
-    "✨ MATCH MAKER",
-    "🔍 BUSCADOR COOL",
-    "📖 MY BLOG",
-    "🎮 QUIZ TIME!"
+    "The Matchmaker",
+    "The Archives",
+    "Latest Gossip",
+    "Pop Quiz"
 ])
 
 # =========================================================
-# TAB 1: RECOMENDADOR
+# TAB 1: THE MATCHMAKER (RECOMENDADOR)
 # =========================================================
 
 with tab1:
-    st.markdown("""
-    <div class="disney-box-blue">
-    <h3>💖 ¡Crea tu Aleación Perfecta!</h3>
-    <p>Mueve los deslizadores de la izquierda para decirle al sistema qué tipo de material estás buscando. ¡Nosotros hacemos el match!</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family:Playfair Display;'>The Perfect Match</h2>", unsafe_allow_html=True)
+    st.write("Dime qué buscas en una aleación y te diré quién es tu pareja ideal. No aceptamos conformismos en el Upper East Side.")
 
-    st.sidebar.markdown("<h2>🎀 Ajustes🎀</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h3 style='font-family:Playfair Display; color:#8b0000;'>Tus Estándares</h3>", unsafe_allow_html=True)
 
-    uts = st.sidebar.slider("💪 Resistencia (Su)", int(df["Su"].min()), int(df["Su"].max()), int(df["Su"].mean()))
-    ys = st.sidebar.slider("⚙️ Límite elástico (Sy)", int(df["Sy"].min()), int(df["Sy"].max()), int(df["Sy"].mean()))
-    elong = st.sidebar.slider("🌸 Elongación (A5)", int(df["A5"].min()), int(df["A5"].max()), int(df["A5"].mean()))
-    hb = st.sidebar.slider("🧁 Dureza (Bhn)", int(df["Bhn"].min()), int(df["Bhn"].max()), int(df["Bhn"].mean()))
-    young = st.sidebar.slider("📏 Módulo Young (E)", int(df["E"].min()), int(df["E"].max()), int(df["E"].mean()))
-    corte = st.sidebar.slider("🐰 Módulo cortante (G)", int(df["G"].min()), int(df["G"].max()), int(df["G"].mean()))
+    uts = st.sidebar.slider("Resistencia Máxima (Su)", int(df["Su"].min()), int(df["Su"].max()), int(df["Su"].mean()))
+    ys = st.sidebar.slider("Límite Elástico (Sy)", int(df["Sy"].min()), int(df["Sy"].max()), int(df["Sy"].mean()))
+    elong = st.sidebar.slider("Elongación (A5)", int(df["A5"].min()), int(df["A5"].max()), int(df["A5"].mean()))
+    hb = st.sidebar.slider("Dureza (Bhn)", int(df["Bhn"].min()), int(df["Bhn"].max()), int(df["Bhn"].mean()))
+    young = st.sidebar.slider("Módulo Young (E)", int(df["E"].min()), int(df["E"].max()), int(df["E"].mean()))
+    corte = st.sidebar.slider("Módulo Cortante (G)", int(df["G"].min()), int(df["G"].max()), int(df["G"].mean()))
 
-    if st.sidebar.button("✨ ¡Hacer Match! ✨"):
+    if st.sidebar.button("Encontrar a mi elegido"):
         features = ["Su", "Sy", "A5", "Bhn", "E", "G"]
         scaler = MinMaxScaler()
         X = scaler.fit_transform(df[features])
@@ -257,194 +239,183 @@ with tab1:
         distancias = euclidean_distances(usuario, X)
         indices = np.argsort(distancias[0])[:5]
         mejores = df.iloc[indices].copy()
-        mejores["Afinidad %"] = [round(100 / (1 + d), 2) for d in distancias[0][indices]]
+        mejores["Compatibilidad %"] = [round(100 / (1 + d), 2) for d in distancias[0][indices]]
 
-        st.dataframe(mejores[["Material", "Heat treatment", "Afinidad %"]], use_container_width=True)
+        st.dataframe(mejores[["Material", "Heat treatment", "Compatibilidad %"]], use_container_width=True)
 
-        fig = px.scatter(mejores, x="Bhn", y="Su", color="Material", size="Afinidad %", text="Material")
-        fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(255,255,255,0.5)", height=500)
+        fig = px.scatter(mejores, x="Bhn", y="Su", color="Material", size="Compatibilidad %", text="Material")
+        fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", height=500)
         st.plotly_chart(fig, use_container_width=True)
 
 # =========================================================
-# TAB 2: BUSCADOR
+# TAB 2: THE ARCHIVES (BUSCADOR)
 # =========================================================
 
 with tab2:
-    st.markdown("""
-    <div class="disney-box-blue">
-    <h3>🔍 Buscador Súper Secreto</h3>
-    <p>Escribe el nombre del material, un tratamiento o un número y encontraremos el archivo. ¡Súper fácil!</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family:Playfair Display;'>The Archives</h2>", unsafe_allow_html=True)
+    st.write("Ningún secreto está a salvo. Busca el nombre del material o tratamiento y desenterraremos su historial.")
     
-    busqueda = st.text_input("📝 Escribe aquí...")
+    busqueda = st.text_input("¿A quién estamos investigando hoy?")
 
     if busqueda:
         mask = np.column_stack([df[col].astype(str).str.contains(busqueda, case=False, na=False) for col in df.columns])
         resultados = df.loc[mask.any(axis=1)]
 
         if len(resultados) > 0:
-            st.success(f"🌟 ¡Yay! Encontramos {len(resultados)} resultados para ti.")
+            st.markdown(f"<p style='color:#8b0000;'>Encontré {len(resultados)} secretos bien guardados...</p>", unsafe_allow_html=True)
             
             for i in range(min(10, len(resultados))):
                 material = resultados.iloc[i]
                 
                 st.markdown(f"""
-                <div class="disney-box" style="border-color: #FF69B4; box-shadow: 5px 5px 0px #32CD32; padding: 20px;">
-                <h3 style="margin-top:0;">✨ {material['Material']} ✨</h3>
-                <p><b>Tratamiento:</b> {material['Heat treatment']}</p>
-                <p><b>Dureza (Bhn):</b> {material['Bhn']} HB | <b>Resistencia (Su):</b> {material['Su']} MPa</p>
-                <p><b>Elongación:</b> {material['A5']}%</p>
+                <div style="border-left: 3px solid #8b0000; padding-left: 20px; margin-bottom: 20px;">
+                    <h3 style="font-family:'Playfair Display'; margin-bottom:0;">{material['Material']}</h3>
+                    <p style="margin-top:5px; color:#555;">
+                        <b>Tratamiento:</b> {material['Heat treatment']}<br>
+                        <b>Dureza:</b> {material['Bhn']} HB | <b>Resistencia:</b> {material['Su']} MPa
+                    </p>
                 </div>
                 """, unsafe_allow_html=True)
         else:
-            st.error("😭 ¡Oh no! No encontramos nada con esa palabra. ¡Intenta otra!")
+            st.error("No hay registros. Parece que alguien borró sus huellas.")
 
 # =========================================================
-# TAB 3: MY BLOG (ESTILO DIARIO 2000s)
+# TAB 3: LATEST GOSSIP (BLOG ESTILO GOSSIP GIRL)
 # =========================================================
 
 with tab3:
-    st.markdown("<h2>📖 El Diario de Materiales</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family:Playfair Display;'>Latest Gossip</h2>", unsafe_allow_html=True)
     
-    # ENTRADA 1
+    # GOSSIP 1
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Viernes, 14 de Mayo 2004</div>
-        <div class="blog-title">OMG! El drama del Acero Inoxidable 😱</div>
-        <p><b>¡Hola chicos! Bienvenidos a otro post.</b> Tienen que saber lo que pasó hoy. Literalmente el Hierro y la Corrosión cortaron para siempre. 💔</p>
-        <p>Resulta que el Hierro se hizo súper amigo del Cromo (obvio, necesitaban mínimo un 10.5% de él). Y el Cromo, siendo el amigo sobreprotector que es, formó una "capa pasiva" de óxido alrededor del Acero. Ahora el Acero es "Inoxidable" y no deja que la corrosión se le acerque para nada. Se toparon en el puerto marítimo y ni se miraron. ¡Qué fuerte!</p>
-        <p><i>XOXO, tu bestie de laboratorio. 💋</i></p>
+    <div class="post-container">
+        <div class="post-date">21 de Mayo, 2026</div>
+        <div class="post-title">El fin de una era tóxica: Acero Inoxidable y Corrosión.</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> La Corrosión llorando desconsolada en las escaleras del MET. Parece que el Hierro por fin entendió su valor y se consiguió a alguien mejor: el Cromo. Bastó un 10.5% de aleación para que el Cromo le formara una capa pasiva protectora que literal lo vuelve intocable. Vimos al Acero Inoxidable pavoneándose en un yate en los Hamptons, y la sal marina ni siquiera pudo arruinarle el brillo. Sorry, Corrosión, you're officially out.</p>
+        <p class="post-body">¿Podrá el ambiente salino encontrar otra víctima? Yo creo que sí.</p>
+        <span class="xoxo">You know you love me. XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/32CD32/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
+    
+    # GOSSIP 2
+    st.markdown("""
+    <div class="post-container">
+        <div class="post-date">19 de Mayo, 2026</div>
+        <div class="post-title">Escándalo en la Alta Sociedad: ¿Bronce o Latón?</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> El Latón paseándose por el Upper East Side usando piezas vintage que juraríamos le pertenecen al Bronce. El Bronce (Cobre y Estaño, la verdadera realeza que definió una era histórica) está furioso de que el Latón (Cobre y Zinc, un arribista) le robe su estética dorada para colarse en las decoraciones de interiores y tuberías baratas. El Latón se defiende diciendo que él es más dócil y fácil de maquinar. But darling, we all know cheap is never chic.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
+    </div>
+    """, unsafe_allow_html=True)
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 2
+    # GOSSIP 3
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Lunes, 17 de Mayo 2004</div>
-        <div class="blog-title">Robo de Identidad: Bronce vs Latón 🕵️‍♀️</div>
-        <p><b>¡Hey! Espero que su inicio de semana esté súper.</b> Hoy en chismes históricos: El Bronce está furiosísimo con el Latón.</p>
-        <p>El Bronce (cobre + estaño) dice que es súper exclusivo y resistente, ¡hasta le dieron su propia era en la historia! Pero el Latón (cobre + zinc) es como el gemelo que copia el look. Es más barato, brilla dorado padrísimo y ahora está en todas las llaves y cerraduras del mundo. ¡Qué escándalo! El Latón se defiende diciendo que es mucho más fácil de tornear. ¿De qué team son ustedes?</p>
+    <div class="post-container">
+        <div class="post-date">15 de Mayo, 2026</div>
+        <div class="post-title">El Ozempic de la Metalurgia: El Aluminio vuela alto.</div>
+        <p class="post-body"><span class="spotted">Word on the street:</span> El Aluminio se ha vuelto el material más cotizado de la industria aeroespacial. Con un peso que humilla al acero (casi un tercio de su densidad), este material pasó de ser más caro que el oro en el siglo XIX, a ser el rey de las nubes gracias a la electrólisis. El Acero está furioso en el gimnasio tratando de perder densidad, pero querida, la genética es la genética. No intentes volar si estás hecha para los cimientos.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/FFD700/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 3
+    # GOSSIP 4
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Jueves, 20 de Mayo 2004</div>
-        <div class="blog-title">El Glow Up del Aluminio ✨✈️</div>
-        <p><b>¡Adivinen quién está de moda!</b> Obvio, el Aluminio. Hace muchísimo tiempo era un metal súper raro y más caro que el oro. Pero ahora que aprendieron a procesarlo, es el rey de la escuela.</p>
-        <p>Pesa casi un tercio de lo que pesa el pobre acero. Literalmente los aviones lo aman porque es súper ligerito pero aguanta muchísimo cuando le ponen magnesio o zinc. El Acero está un poquito celoso porque ya no lo invitan a volar tanto, pero bueno, ¡así es la vida!</p>
+    <div class="post-container">
+        <div class="post-date">12 de Mayo, 2026</div>
+        <div class="post-title">Titanio: ¿High maintenance o simplemente inalcanzable?</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> El Titanio arruinando herramientas de corte en un taller en Brooklyn. Tiene la relación resistencia-peso de un dios y es tan biocompatible que los médicos lo adoran, pero... ¿su actitud? Intolerable. Exige ambientes libres de oxígeno para ser soldado y destruye los tornos que intentan darle forma. Los ingenieros lo toleran porque es rico y resistente, pero todas sabemos que trabajar con él es una pesadilla de relaciones públicas.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/87CEFA/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 4
+    # GOSSIP 5
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Sábado, 22 de Mayo 2004</div>
-        <div class="blog-title">Titanio: ¿Súper diva? 💅</div>
-        <p><b>¡Fin de semana!</b> Y tenemos que hablar del Titanio. O sea, sí, es guapísimo estructuralmente, no pesa nada, aguanta todo y el cuerpo humano no lo rechaza (súper útil para los médicos).</p>
-        <p>¿Pero sabían que trabajar con él es una pesadilla? Rompe las herramientas en los talleres, exige condiciones súper limpias para soldarse (literalmente se contamina con el aire normal). Muchos ingenieros dicen que es demasiado "high maintenance". ¿Vale la pena tanto show?</p>
+    <div class="post-container">
+        <div class="post-date">10 de Mayo, 2026</div>
+        <div class="post-title">Plomo: Cancelado para siempre.</div>
+        <p class="post-body"><span class="spotted">Breaking News:</span> La caída en desgracia del Plomo es oficial. Quien alguna vez fue la estrella de las tuberías romanas y la pintura de las altas esferas, hoy es un exiliado. Ser neurotóxico te cuesta la carrera, darling. Hoy en día solo le permiten trabajar absorbiendo radiación en los sótanos de los hospitales. Un final muy poco glamuroso para un metal tan pesado.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/9370DB/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 5
+    # GOSSIP 6
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Lunes, 24 de Mayo 2004</div>
-        <div class="blog-title">El Plomo está CANCELADO 🚫</div>
-        <p><b>Bad news para los materiales antiguos.</b> El Plomo fue literalmente desterrado. Antes estaba en todas partes: en la pintura de los cuartos, en el gas del coche, en las tuberías...</p>
-        <p>Pero se descubrió que es súper tóxico para el cerebro. Así que le quitaron todos sus contratos y ahora solo lo tienen escondido en los hospitales cuidando a la gente de los Rayos X por lo denso que es. ¡Moraleja: no confíen en metales pesados!</p>
+    <div class="post-container">
+        <div class="post-date">8 de Mayo, 2026</div>
+        <div class="post-title">Tungsteno, el corazón de hielo.</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> Tungsteno riéndose en la cara de un horno industrial. Este chico literalmente no se derrite por nadie. Con un punto de fusión superior a los 3,400 °C, es el soltero empedernido de la tabla periódica. Solo se mezcla con el Carbono para romper los corazones (y las brocas) de otros metales más débiles. Frío, duro e intocable.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/FF1493/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 6
+    # GOSSIP 7
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Miércoles, 26 de Mayo 2004</div>
-        <div class="blog-title">Tungsteno: El chico malo 🔥</div>
-        <p><b>¡Hola!</b> Hoy les traigo un dato súper random. ¿Conocen al Tungsteno? Es ese tipo rudo que literalmente no se derrite con nada. Su punto de fusión está arriba de los 3,400 °C. O sea, ¡qué calor!</p>
-        <p>Lo usaban muchísimo en los foquitos viejos porque se calentaba sin romperse. Y si lo mezclas con carbón, hace herramientas que pueden cortar el metal como si fuera mantequilla. Es el más rudo de todos, sin duda.</p>
+    <div class="post-container">
+        <div class="post-date">5 de Mayo, 2026</div>
+        <div class="post-title">Grafeno: El 'Nepo Baby' de los materiales.</div>
+        <p class="post-body"><span class="spotted">Word is:</span> El Grafeno tiene el mejor publicista del mundo. Nos prometió elevadores espaciales, baterías infinitas y ropa inteligente. En teoría es 200 veces más fuerte que el acero, pero a la hora de producirlo a escala real, es un desastre carísimo. Mientras él sale en las portadas de Nature, el Silicio es quien hace el trabajo sucio manteniendo nuestros celulares vivos. Stop trying to make Graphene happen, it's not going to happen.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/32CD32/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 7
+    # GOSSIP 8
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Viernes, 28 de Mayo 2004</div>
-        <div class="blog-title">Grafeno: Puro chisme y nada de acción 🙄</div>
-        <p><b>TGIF chicos!</b> Últimamente todo el mundo habla del Grafeno. Que si es el material del futuro, que si es mil veces más fuerte que el acero, que si va a cambiar nuestras vidas...</p>
-        <p>Pero la verdad es que producirlo en grandes cantidades es carísimo y súper difícil. Mientras el Grafeno sigue posando para las portadas de revistas de ciencia, el Silicio es el que realmente hace todo el trabajo pesado en nuestras compus y celulares. ¡Más reconocimiento al Silicio, por favor!</p>
+    <div class="post-container">
+        <div class="post-date">3 de Mayo, 2026</div>
+        <div class="post-title">Cobre al borde de un colapso nervioso.</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> El Cobre trabajando horas extras otra vez. Conduce la electricidad de toda la ciudad, nuestros dispositivos y nuestras vidas. Es el empleado del mes desde hace un siglo. Pero el cansancio se nota: se sobrecalienta por efecto Joule y empieza a desarrollar esa famosa pátina verde cuando no puede lidiar con la presión. Alguien dele unas vacaciones antes de que sus redes cristalinas colapsen.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/FFD700/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 8
+    # GOSSIP 9
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Domingo, 30 de Mayo 2004</div>
-        <div class="blog-title">Pobre Cobre, necesita vacaciones 😴</div>
-        <p><b>Domingo de descanso... excepto para el Cobre.</b> Literalmente él nos da vida a todos. Cables, celulares, teles, todo funciona gracias a él porque es un excelente conductor eléctrico.</p>
-        <p>La plata es mejor conductora, pero cobra carísimo, así que el cobre hace todo el trabajo. Últimamente se anda sobrecalentando y le sale esa capita verde cuando se oxida (como la Estatua de la Libertad). ¡Mándenle buenas vibras!</p>
+    <div class="post-container">
+        <div class="post-date">1 de Mayo, 2026</div>
+        <div class="post-title">Polímeros: Las amistades tóxicas que no se van.</div>
+        <p class="post-body"><span class="spotted">Scandal:</span> Los plásticos. Llegaron en los 50s prometiendo ser la solución barata a todos nuestros problemas. Pero como esos invitados incómodos en una fiesta en los Hamptons, simplemente no saben cuándo irse. Sus enlaces covalentes son tan fuertes que la naturaleza no puede degradarlos. Ahora el Océano ha emitido una orden de restricción contra ellos. Awkward.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/87CEFA/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
-    # ENTRADA 9
+    # GOSSIP 10
     st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Martes, 1 de Junio 2004</div>
-        <div class="blog-title">Polímeros: Drama Ecológico 🌍</div>
-        <p><b>¡Hola! Empezamos mes con un temazo.</b> Los plásticos (polímeros). En los 50s todos decían que eran la octava maravilla: baratos, flexibles, de colores bonitos...</p>
-        <p>Pero oh sorpresa, la naturaleza no tiene idea de cómo destruirlos porque sus enlaces son súper fuertes. Ahora andan con campañas de reciclaje porque el Océano ya se quejó formalmente. Ojalá lo solucionen pronto.</p>
+    <div class="post-container">
+        <div class="post-date">28 de Abril, 2026</div>
+        <div class="post-title">Oro: Complejo de superioridad.</div>
+        <p class="post-body"><span class="spotted">Spotted:</span> El Oro rehusándose a mezclarse con los plebeyos. Por ser un metal noble, no se oxida ni reacciona con el ambiente. Su corona está intacta. Pero, let's be real: estructuralmente es patético. Es tan blando que para salir en público en forma de joyería, tiene que llamar a la Plata y al Cobre para que le den algo de dureza. Mucho brillo, poco soporte.</p>
+        <span class="xoxo">XOXO, Material Girl.</span>
     </div>
     """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/9370DB/FFFFFF?text=FOTO+AQUI", use_container_width=True)
-    st.write("---")
-
-    # ENTRADA 10
-    st.markdown("""
-    <div class="blog-entry">
-        <div class="blog-date">Jueves, 3 de Junio 2004</div>
-        <div class="blog-title">El Oro es un fresa 👑</div>
-        <p><b>Cerrando la semana de chismes.</b> ¿Sabían que el Oro es súper presumido? Es un "metal noble", lo que significa que no se oxida, no se mancha y no reacciona con nada.</p>
-        <p>Pero la verdad es que es súper débil. Si haces un anillo 100% de oro, se va a aplastar súper rápido. Tiene que invitar a la plata y al cobre para que lo hagan más fuerte (eso es lo que significan los quilates). ¡Atrapado!</p>
-    </div>
-    """, unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/FF1493/FFFFFF?text=FOTO+AQUI", use_container_width=True)
+    st.image("https://via.placeholder.com/800x400/e0e0e0/1a1a1a?text=FOTO+PAPARAZZI+AQUI", use_container_width=True)
 
 # =========================================================
-# TAB 4: QUIZ ZONE 🎮
+# TAB 4: POP QUIZ 🎩
 # =========================================================
 
 with tab4:
-    st.markdown("<h2>🎮 ¡Demuestra qué tan fan eres!</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family:Playfair Display;'>Pop Quiz, Upper East Siders.</h2>", unsafe_allow_html=True)
+    st.write("Demuestra que mereces estar en la lista VIP. Falla, y todo Manhattan se enterará.")
     
     preguntas = [
-        {"q": "¿Qué material es el favorito de los aviones por no pesar casi nada?", "o": ["Titanio", "Aluminio", "Cobre"], "c": "Aluminio", "r": "¡Yay! El aluminio es súper ligerito."},
-        {"q": "¿Qué se le echa al hierro para que se vuelva Acero y sea súper fuerte?", "o": ["Cromo", "Carbono", "Zinc"], "c": "Carbono", "r": "¡Así es! El carbono es el secreto mágico."},
-        {"q": "Material top para hacer cables por ser súper buen conductor:", "o": ["Cobre", "Níquel", "Estaño"], "c": "Cobre", "r": "¡Obvio! El cobre es el rey de la electricidad barata."},
-        {"q": "¿Qué propiedad nos dice si un material es súper estirable sin romperse?", "o": ["Dureza", "Elongación", "Fatiga"], "c": "Elongación", "r": "¡Bingo! La elongación o ductilidad lo hace como chicle."},
-        {"q": "¿Qué metal hace que el acero se vuelva 'Inoxidable'?", "o": ["Níquel", "Vanadio", "Cromo"], "c": "Cromo", "r": "¡Correcto! El Cromo forma el escudito protector."},
-        {"q": "¿De qué están hechas las medallas de tercer lugar? (Cobre + Estaño)", "o": ["Latón", "Bronce", "Alpaca"], "c": "Bronce", "r": "¡Súper! El Bronce es el material histórico."},
-        {"q": "¿Con qué prueba mides qué tan fácil se raya o se hunde un metal?", "o": ["Tracción", "Charpy", "Dureza"], "c": "Dureza", "r": "¡Exacto! Las pruebas Brinell o Rockwell lo miden."},
-        {"q": "El metal más resistente al calor, ideal para focos y herramientas rudas:", "o": ["Magnesio", "Tungsteno", "Plomo"], "c": "Tungsteno", "r": "¡Súper smart! El Tungsteno no se derrite con nada."},
-        {"q": "Un plástico está hecho de cadenas larguísimas llamadas polímeros. ¿Cuál es la pieza más chiquita que los forma?", "o": ["Cristales", "Monómeros", "Isótopos"], "c": "Monómeros", "r": "¡Wow! Monómero más monómero igual a polímero."},
-        {"q": "¿Qué metal acepta tan bien el cuerpo humano que lo usan para implantes?", "o": ["Titanio", "Acero al carbono", "Aluminio"], "c": "Titanio", "r": "¡Correcto! El titanio es el bestie de los médicos."}
+        {"q": "¿Qué material es el rey absoluto de la industria aeroespacial gracias a su dieta estricta de baja densidad?", "o": ["Titanio", "Aluminio", "Cobre"], "c": "Aluminio", "r": "El aluminio tiene una densidad de 2.7 g/cm³. Perfecto para volar alto."},
+        {"q": "¿Quién es el invitado secreto del hierro que lo convierte en el poderoso Acero?", "o": ["Cromo", "Carbono", "Zinc"], "c": "Carbono", "r": "El carbono entra en los intersticios del hierro y le da la fuerza que necesita para brillar."},
+        {"q": "El metal que monopoliza el cableado de élite por ser un conductor de primera (y más barato que la plata):", "o": ["Cobre", "Níquel", "Estaño"], "c": "Cobre", "r": "Cobre. Nadie conecta a la élite mejor que él."},
+        {"q": "¿Qué propiedad define qué tanto drama (deformación) puede soportar un material antes de romperse por completo?", "o": ["Dureza", "Elongación", "Fatiga"], "c": "Elongación", "r": "Elongación. Ser dúctil significa saber adaptarse sin quebrarse."},
+        {"q": "¿Quién le regaló al acero su icónica capa pasiva para volverlo inoxidable?", "o": ["Níquel", "Vanadio", "Cromo"], "c": "Cromo", "r": "El Cromo. La mejor defensa contra los chismes y la oxidación."},
+        {"q": "El Bronce, el original. ¿De quiénes es hijo?", "o": ["Cobre y Zinc", "Cobre y Estaño", "Hierro y Carbono"], "c": "Cobre y Estaño", "r": "Cobre y Estaño. La mezcla histórica más exclusiva."},
+        {"q": "Si quieres saber qué tan fácil es rayar la reputación de un material, le haces una prueba de:", "o": ["Tracción", "Impacto", "Dureza"], "c": "Dureza", "r": "Dureza. Solo los más fuertes sobreviven el indentador."},
+        {"q": "El metal que se ríe del calor y tiene el punto de fusión más alto de la fiesta:", "o": ["Magnesio", "Tungsteno", "Plomo"], "c": "Tungsteno", "r": "Tungsteno. Nadie derrite su corazón."},
+        {"q": "Los plásticos están formados por polímeros, pero ¿quiénes son sus peones básicos?", "o": ["Cristales", "Monómeros", "Isótopos"], "c": "Monómeros", "r": "Monómeros. Se unen para formar el imperio del plástico."},
+        {"q": "El metal tan exclusivo y biocompatible que el propio cuerpo humano le abre las puertas en los quirófanos:", "o": ["Titanio", "Acero al carbono", "Aluminio"], "c": "Titanio", "r": "Titanio. Caro, difícil de tratar, pero indispensable en la medicina."}
     ]
 
     if 'pregunta_actual' not in st.session_state:
@@ -452,28 +423,24 @@ with tab4:
 
     p = st.session_state.pregunta_actual
 
-    # TARJETA DEL QUIZ DISEÑO DISNEY
     st.markdown(f"""
-    <div class="quiz-card">
-        <div style="font-family:'Comic Neue'; font-size:20px; color:#FFE4E1; margin-bottom:10px;">✨ PREGUNTA ✨</div>
-        <div class="quiz-question">{p['q']}</div>
+    <div style="background-color: #ffffff; border: 1px solid #1a1a1a; padding: 30px; margin-bottom: 20px;">
+        <h3 style="font-family:'Playfair Display'; color:#8b0000; margin-top:0;">{p['q']}</h3>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<div style='background:#E0FFFF; border:4px dashed #32CD32; border-radius:20px; padding:20px;'>", unsafe_allow_html=True)
-    respuesta = st.radio("👇 Elige tu respuesta súper cool 👇", p["o"])
-    st.markdown("</div><br>", unsafe_allow_html=True)
+    respuesta = st.radio("Tu respuesta final:", p["o"])
 
     colA, colB = st.columns(2)
     with colA:
-        if st.button("💖 REVISAR RESPUESTA 💖"):
+        if st.button("Enviar Respuesta"):
             if respuesta == p["c"]:
-                st.balloons()
-                st.markdown(f"<div class='disney-box' style='border-color:#FFD700;'><h3>🌟 ¡WOW! SÚPER CORRECTO</h3><p style='font-size:20px;'>{p['r']}</p></div>", unsafe_allow_html=True)
+                st.markdown(f"<div style='padding:15px; border-left:4px solid #8b0000; background:#f9f9f9;'><span class='spotted'>Spotted:</span> Un genio trabajando. {p['r']}</div>", unsafe_allow_html=True)
             else:
-                st.markdown(f"<div class='disney-box' style='border-color:#FF1493;'><h3>😭 UPS! CASI...</h3><p style='font-size:20px;'>Era {p['c']}. {p['r']}</p></div>", unsafe_allow_html=True)
+                st.markdown(f"<div style='padding:15px; border-left:4px solid #1a1a1a; background:#f9f9f9;'><span class='spotted'>Uh oh...</span> Alguien no hizo su tarea. Era {p['c']}. {p['r']}</div>", unsafe_allow_html=True)
                 
     with colB:
-        if st.button("⏭️ SIGUIENTE PREGUNTA ⏭️"):
+        if st.button("Siguiente Escándalo"):
             st.session_state.pregunta_actual = random.choice(preguntas)
             st.rerun()
+            
